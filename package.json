@@ -1,0 +1,33 @@
+{
+  "name": "instagram_clone",
+  "version": "1.0.0",
+  "description": "clone coding for instagram",
+  "main": "index.js",
+  "scripts": {
+    "front-prettier:fix": "cd frontend && npm run prettier:fix",
+    "front-eslint:fix": "cd frontend && npm run eslint:fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjs595959/instagram_clone.git"
+  },
+  "author": "EvoDev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rjs595959/instagram_clone/issues"
+  },
+  "homepage": "https://github.com/rjs595959/instagram_clone#readme",
+  "devDependencies": {
+    "husky": "^8.0.1",
+    "lint-staged": "^12.4.1"
+  },
+  "lint-staged": {
+    "./frontend/**/*.{js,jsx,ts,tsx}": [
+      "npm run prettier:fix",
+      "npm run eslint:fix"
+    ],
+    "*.{json,md}": [
+      "npm run prettier:fix"
+    ]
+  }
+}
