@@ -1,19 +1,38 @@
 * {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
 }
 
 html,
 body,
 #__next {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  background: #fff;
-  background: rgba(var(--d87, 255, 255, 255), 1);
-  overflow-y: scroll;
+    background: #fff;
+    background: rgba(var(--d87, 255, 255, 255), 1);
+    overflow-y: scroll;
+}
+
+#react-root,
+article,
+div,
+footer,
+header,
+main,
+nav,
+section {
+    align-items: stretch;
+    border: 0 solid #000;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    position: relative;
 }
