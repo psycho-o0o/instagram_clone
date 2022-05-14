@@ -3,17 +3,15 @@ import theme from '@/styles/theme';
 import { ThemeProvider } from 'styled-components';
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
-import { store } from 'store';
-import { Provider } from 'react-redux';
+import wrapper from 'redux/store';
+
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <Provider store={store}>
-            <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
                 <Component {...pageProps} />
             </ThemeProvider>
-        </Provider>
     );
 }
 
-export default appWithTranslation(MyApp);
+export default wrapper.withRedux(appWithTranslation(MyApp));
