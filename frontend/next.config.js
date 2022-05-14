@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
+import { i18n } from './next-i18nextconfig';
 const nextConfig = {
-  reactStrictMode: true,
-}
+    reactStrictMode: true,
+    i18n,
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
