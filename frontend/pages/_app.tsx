@@ -14,4 +14,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     );
 }
 
-export default wrapper.withRedux(appWithTranslation(MyApp));
+export default appWithTranslation(wrapper.withRedux(MyApp));
