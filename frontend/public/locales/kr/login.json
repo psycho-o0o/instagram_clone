@@ -1,3 +1,8 @@
 {
-    "selectLanguage" : "한국어"
+    "selectLanguage" : "한국어",
+    "suggestion" : "친구들의 사진과 동영상을 보려면 가입하세요.",
+    "downloadApp" : "Instagram 앱 다운로드",
+    "logIn" : "로그인",
+    "or" : "또는",
+    "signUp" : "가입하기"
 }
