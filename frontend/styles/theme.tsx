@@ -15,11 +15,9 @@ const theme: DefaultTheme = {
         gray2: 'rgb(168,168,168)',
         gray3: 'rgb(199, 199, 199)',
         gray4: 'rgb(219,219,219)',
-        gray5: 'rgb(224,241,255)',
-        gray6: 'rgb(239,239,239)',
-        gray7: 'rgb(243,243,243)',
-        gray8: 'rgb(245,251,255)',
-        gray9: 'rgb(250, 250, 250)',
+        gray5: 'rgb(239,239,239)',
+        gray6: 'rgb(243,243,243)',
+        gray7: 'rgb(250, 250, 250)',
 
         //green
         green1: 'rgb(88,195,34)',
@@ -29,6 +27,8 @@ const theme: DefaultTheme = {
         blue1: 'rgb(0,149,246)',
         blue2: 'rgb(53,121,234)',
         blue3: 'rgb(0, 55, 107)',
+        blue4: 'rgb(224,241,255)',
+        blue5: 'rgb(245,251,255)',
 
         //red
         red1: 'rgb(255,1,105)',
