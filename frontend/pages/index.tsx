@@ -1,9 +1,9 @@
 import React from 'react';
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
-import Login from '@/features/login/Login';
-import styled from 'styled-components';
 import { SSRConfig } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import styled from 'styled-components';
+import Login from '@/features/login/Login';
 
 const StyledSection = styled.section`
     min-height: 100vh;
