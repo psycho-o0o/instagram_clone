@@ -21,9 +21,10 @@ function App() {
 
 export const getStaticProps = async ({
     locale,
+    defaultLocale
 }: GetStaticPropsContext): Promise<GetStaticPropsResult<SSRConfig>> => ({
     props: {
-        ...(await serverSideTranslations(locale || 'kr', ['login'])),
+        ...(await serverSideTranslations(locale || defaultLocale as string, ['login'])),
     },
 });
 
