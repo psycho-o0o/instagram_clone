@@ -3,6 +3,7 @@ import wrapper from 'redux/store';
 import { ThemeProvider } from 'styled-components';
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
+import nextI18NextConfig from '../next-i18next.config'
 import theme from '@/styles/theme';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -13,4 +14,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     );
 }
 
-export default appWithTranslation(wrapper.withRedux(MyApp));
+export default appWithTranslation(wrapper.withRedux(MyApp), nextI18NextConfig);
