@@ -3,8 +3,7 @@ import { DefaultTheme } from 'styled-components';
 const theme: DefaultTheme = {
     colors: {
         //white
-        white1: 'rgb(250, 250, 250)',
-        white2: 'rgb(255,255,255)',
+        white: 'rgb(255,255,255)',
 
         //black
         black1: 'rgb(0,0,0)',
@@ -20,6 +19,7 @@ const theme: DefaultTheme = {
         gray6: 'rgb(239,239,239)',
         gray7: 'rgb(243,243,243)',
         gray8: 'rgb(245,251,255)',
+        gray9: 'rgb(250, 250, 250)',
 
         //green
         green1: 'rgb(88,195,34)',
@@ -35,7 +35,7 @@ const theme: DefaultTheme = {
         red2: 'rgb(237,73,86)',
 
         //purple
-        purple1: 'rgb(118,56,250)',
+        purple: 'rgb(118,56,250)',
     },
 };
 
