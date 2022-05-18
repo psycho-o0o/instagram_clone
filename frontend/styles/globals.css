@@ -48,3 +48,10 @@ textarea {
     font-size: 14px;
     line-height: 18px;
 }
+
+a,
+a:visited {
+    color: #00376b;
+    color: rgba(var(--fe0, 0, 55, 107), 1);
+    text-decoration: none;
+}
