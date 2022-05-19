@@ -1,0 +1,12 @@
+{
+    "facebookLogin" : "Continue with Facebook",
+    "or" : "or",
+    "placeholderAboutId" : "Phone number, username, or email",
+    "placeholderAboutPw" : "Password",
+    "showPassword" : "Show",
+    "hidePassword" :  "Hide",
+    "forgetPassword" : "Forgot Password",
+    "logIn" : "Log In",
+    "signUpText" : "Don't have an account?",
+    "signUpButton" : "Sign up"
+}
