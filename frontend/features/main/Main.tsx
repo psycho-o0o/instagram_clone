@@ -1,9 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import Image from 'next/image';
-import { useTheme } from 'styled-components';
 import { i18n, useTranslation } from 'next-i18next';
-import parser from 'ua-parser-js';
+import { useTheme } from 'styled-components';
+import Login from './login/Login';
 import { DownOutlined } from '@ant-design/icons';
+import parser from 'ua-parser-js';
 import {
     StyledMain,
     StyledNav,
@@ -17,6 +18,7 @@ import {
     LogoWrap,
     LogoWrapper,
     SuggestionWrapper,
+    DownLoadAppButton,
 } from './Main.style';
 
 interface IProps {
@@ -27,6 +29,7 @@ function Main({ userAgent }: IProps) {
     const theme = useTheme();
     const ua = parser(userAgent);
     const { t } = useTranslation('main');
+    const [isClickedLogin, setIsClickedLogin] = useState(false);
 
     const onChangeLanguage = useCallback(
         (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -51,6 +54,10 @@ function Main({ userAgent }: IProps) {
         }
     }, [i18n?.language]);
 
+    const onClickLogIn = useCallback(() => {
+        setIsClickedLogin(true);
+    }, []);
+
     return (
         <StyledMain>
             <StyledNav>
@@ -74,7 +81,7 @@ function Main({ userAgent }: IProps) {
                 </LanguageWrapper>
             </StyledNav>
             <StyledArticle>
-                <MainWrapper>
+                <MainWrapper isClickedLogin={isClickedLogin}>
                     <LogoWrapper>
                         <LogoWrap>
                             <Image
@@ -86,21 +93,30 @@ function Main({ userAgent }: IProps) {
                             ></Image>
                         </LogoWrap>
                     </LogoWrapper>
-                    <SuggestionWrapper colors={theme.colors}>
-                        <div className="top">
-                            <div>{t('suggestion')}</div>
-                        </div>
-                        <div className="middle">
-                            <button onClick={onClickDownloadApp}>
-                                {t('downloadApp')}
-                            </button>
-                        </div>
-                        <div className="bottom">
-                            <button>{t('logIn')}</button>
-                            <div>{t('or')}</div>
-                            <button>{t('signUp')}</button>
-                        </div>
-                    </SuggestionWrapper>
+                    {isClickedLogin ? (
+                        <Login />
+                    ) : (
+                        <SuggestionWrapper colors={theme.colors}>
+                            <div className="top">
+                                <div>{t('suggestion')}</div>
+                            </div>
+                            <div className="middle">
+                                <DownLoadAppButton
+                                    colors={theme.colors}
+                                    onClick={onClickDownloadApp}
+                                >
+                                    {t('downloadApp')}
+                                </DownLoadAppButton>
+                            </div>
+                            <div className="bottom">
+                                <button onClick={onClickLogIn}>
+                                    {t('logIn')}
+                                </button>
+                                <div>{t('or')}</div>
+                                <button>{t('signUp')}</button>
+                            </div>
+                        </SuggestionWrapper>
+                    )}
                 </MainWrapper>
             </StyledArticle>
             <CompanyWrapper>

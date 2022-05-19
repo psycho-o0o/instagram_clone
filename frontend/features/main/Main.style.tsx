@@ -1,4 +1,9 @@
 import styled, { DefaultTheme } from 'styled-components';
+import { Button1 } from '@/fragments/Buttons';
+
+interface IMainWrapper {
+    isClickedLogin: boolean;
+}
 
 export const StyledMain = styled.main`
     min-height: 100vh;
@@ -15,11 +20,12 @@ export const StyledArticle = styled.article`
     width: 100%;
     max-width: 935px;
 `;
-export const MainWrapper = styled.div`
-    padding-top: 100px;
+export const MainWrapper = styled.div<IMainWrapper>`
+    padding-top: ${(props) => (props.isClickedLogin ? '0px' : '100px')};
     padding-bottom: 60px;
     max-width: 100%;
     justify-content: flex-start;
+    align-items: center;
 `;
 export const LogoWrapper = styled.div`
     margin-top: 36px;
@@ -33,8 +39,6 @@ export const LogoWrap = styled.div`
 `;
 
 export const SuggestionWrapper = styled.div<DefaultTheme>`
-    &:nth-child(2n-1) {
-    }
     & > .top {
         margin-top: 4px;
         margin-right: 40px;
@@ -57,17 +61,6 @@ export const SuggestionWrapper = styled.div<DefaultTheme>`
         margin-right: 40px;
         margin-left: 40px;
         flex: 0 0 auto;
-        & > button {
-            background-color: ${(props) => props.colors.blue1};
-            border: 1px solid transparent;
-            padding: 12px 18px;
-            color: white;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 600;
-            text-overflow: ellipsis;
-            text-align: center;
-        }
     }
 
     & > .bottom {
@@ -95,6 +88,14 @@ export const SuggestionWrapper = styled.div<DefaultTheme>`
             display: inline-block;
         }
     }
+`;
+
+export const DownLoadAppButton = styled(Button1)<DefaultTheme>`
+    background-color: ${(props) => props.colors.blue1};
+    border: 1px solid transparent;
+    padding: 12px 18px;
+    color: white;
+    border-radius: 4px;
 `;
 
 export const CompanyWrapper = styled.div`
