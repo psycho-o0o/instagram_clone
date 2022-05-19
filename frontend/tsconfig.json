@@ -20,7 +20,8 @@
           "@/fragments/*" : ["fragments/*"],
           "@/pages/*" : ["pages/*"],
           "@/public/*" : ["public/*"],
-          "@/styles/*" : ["styles/*"]
+          "@/styles/*" : ["styles/*"],
+          "@/redux/*" : ["redux/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next-i18next-config.js"],
