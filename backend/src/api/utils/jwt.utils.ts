@@ -1,0 +1,54 @@
+import {
+	sign,
+	SignOptions,
+	verify,
+	VerifyOptions,
+	Jwt,
+	JwtPayload
+} from 'jsonwebtoken';
+import * as fs from 'fs';
+import * as path from 'path';
+
+export function generateToken() {
+	const payload = {
+		__id: '1',
+		phone: '01081389280',
+		email: 'rjs595959@naver.com',
+		name: '장동건',
+		nickName: 'evoDev'
+	};
+
+	const privateKey = fs.readFileSync(
+		path.join(__dirname, './../../../private.key')
+	);
+	const signInOptions: SignOptions = {
+		algorithm: 'RS256',
+		expiresIn: '1h'
+	};
+
+	return sign(
+		payload,
+		{ key: privateKey, passphrase: 'evoDev' },
+		signInOptions
+	);
+}
+
+export function validateToken(
+	token: string
+): Promise<Jwt | JwtPayload | string | undefined> {
+	const publicKey = fs.readFileSync(
+		path.join(__dirname, './../../../public.key')
+	);
+
+	const verifyOptions: VerifyOptions = {
+		algorithms: ['RS256']
+	};
+
+	return new Promise((resolve, reject) => {
+		verify(token, publicKey, verifyOptions, (error, decoded) => {
+			if (error) return reject(error);
+
+			resolve(decoded);
+		});
+	});
+}
