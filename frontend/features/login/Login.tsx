@@ -1,8 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import Image from 'next/image';
 import { useTheme } from 'styled-components';
-import { useForm } from 'react-hook-form';
 import { i18n, useTranslation } from 'next-i18next';
+import parser from 'ua-parser-js';
+import { DownOutlined } from '@ant-design/icons';
 import {
     StyledMain,
     StyledNav,
@@ -18,36 +19,59 @@ import {
     SuggestionWrapper,
 } from './Login.style';
 
-function Login() {
-    const theme = useTheme();
-    const { t } = useTranslation('login');
-    const [language, setLanguage] = useState(i18n?.language || 'kr');
+interface IProps {
+    userAgent: string | undefined;
+}
 
-    const changeLanguage = useCallback(
+function Login({ userAgent }: IProps) {
+    const theme = useTheme();
+    const ua = parser(userAgent);
+    const { t } = useTranslation('login');
+
+    const onChangeLanguage = useCallback(
         (e: React.ChangeEvent<HTMLSelectElement>) => {
-            setLanguage(e.target.value);
             i18n?.changeLanguage(e.target.value);
         },
         [i18n]
     );
 
+    const onClickDownloadApp = useCallback(() => {
+        const [hl, gl] = i18n?.language.split('-') as string[];
+        const googlePlayUrl = `https://play.google.com/store/apps/details?id=com.instagram.android&hl=${hl}&gl=${gl}`;
+        const AppStoreUrl =
+            'https://apps.apple.com/us/app/instagram/id389801252';
+        if (window === undefined) {
+            return;
+        }
+
+        if (ua.os.name === 'Android') {
+            window.open(googlePlayUrl, '__blank');
+        } else if (ua.os.name === 'iOS') {
+            window.open(AppStoreUrl, '__blank');
+        } else {
+            window.alert('지원하지 않는 운영체제입니다.');
+        }
+    }, [i18n?.language]);
+
     return (
         <StyledMain>
             <StyledNav>
-                <LanguageWrapper color={theme.colors.gray}>
+                <LanguageWrapper colors={theme.colors}>
                     <LanguageWrap>
                         <span>{t('selectLanguage')}</span>
                         <ArrowWrapper>
-                            <ArrowWrap></ArrowWrap>
+                            <ArrowWrap>
+                                <DownOutlined />
+                            </ArrowWrap>
                         </ArrowWrapper>
                     </LanguageWrap>
                     <select
                         aria-label="표시 언어 변경"
-                        value={language}
-                        onChange={changeLanguage}
+                        onChange={onChangeLanguage}
+                        value={i18n?.language}
                     >
-                        <option value="kr">한국어</option>
-                        <option value="en">English</option>
+                        <option value="ko-KR">한국어</option>
+                        <option value="en-US">English</option>
                     </select>
                 </LanguageWrapper>
             </StyledNav>
@@ -66,12 +90,10 @@ function Login() {
                     </LogoWrapper>
                     <SuggestionWrapper colors={theme.colors}>
                         <div className="top">
-                            <div>
-                               {t('suggestion')}
-                            </div>
+                            <div>{t('suggestion')}</div>
                         </div>
                         <div className="middle">
-                            <button>
+                            <button onClick={onClickDownloadApp}>
                                 {t('downloadApp')}
                             </button>
                         </div>
@@ -83,7 +105,9 @@ function Login() {
                     </SuggestionWrapper>
                 </MainWrapper>
             </StyledArticle>
-            <CompanyWrapper></CompanyWrapper>
+            <CompanyWrapper>
+                <span aria-label="from Meta" />
+            </CompanyWrapper>
         </StyledMain>
     );
 }

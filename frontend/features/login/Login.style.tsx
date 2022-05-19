@@ -1,9 +1,5 @@
 import styled, { DefaultTheme } from 'styled-components';
 
-interface ILanguageWrapper {
-    color: string;
-}
-
 export const StyledMain = styled.main`
     min-height: 100vh;
     background-color: #fff;
@@ -12,10 +8,8 @@ export const StyledMain = styled.main`
 export const StyledNav = styled.nav`
     margin: 16px 16px 6px;
 `;
-export const StyledArticle = styled.div`
-    flex-direction: row;
+export const StyledArticle = styled.article`
     flex-grow: 1;
-    justify-content: center;
     margin: 0 auto;
     padding-bottom: 32px;
     width: 100%;
@@ -26,7 +20,6 @@ export const MainWrapper = styled.div`
     padding-bottom: 60px;
     max-width: 100%;
     justify-content: flex-start;
-    padding: 10px 0;
 `;
 export const LogoWrapper = styled.div`
     margin-top: 36px;
@@ -41,7 +34,6 @@ export const LogoWrap = styled.div`
 
 export const SuggestionWrapper = styled.div<DefaultTheme>`
     &:nth-child(2n-1) {
-        
     }
     & > .top {
         margin-top: 4px;
@@ -50,12 +42,13 @@ export const SuggestionWrapper = styled.div<DefaultTheme>`
         flex: 0 0 auto;
         & > div {
             text-align: center;
-            color: ${(props) => props.colors.gray};
+            color: ${(props) => props.colors.gray1};
             font-weight: 400;
             font-size: 14px;
             line-height: 18px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
                 Helvetica, Arial, sans-serif;
+            margin: -3px 0 -4px;
         }
     }
 
@@ -65,7 +58,7 @@ export const SuggestionWrapper = styled.div<DefaultTheme>`
         margin-left: 40px;
         flex: 0 0 auto;
         & > button {
-            background-color: ${(props) => props.colors.skyBlue};
+            background-color: ${(props) => props.colors.blue1};
             border: 1px solid transparent;
             padding: 12px 18px;
             color: white;
@@ -78,19 +71,17 @@ export const SuggestionWrapper = styled.div<DefaultTheme>`
     }
 
     & > .bottom {
-        margin-top: 20px;
         display: flex;
         flex: 0 0 auto;
         flex-direction: row;
         justify-content: center;
+        margin-top: 20px;
 
-        & > div,
-        & > button {
-            font-size: 14px;
-            text-align: center;
-            text-overflow: ellipsis;
-            color: ${(props) => props.colors.gray};
-        }
+        font-size: 14px;
+        text-align: center;
+        text-overflow: ellipsis;
+        color: ${(props) => props.colors.gray1};
+
         & > div {
             margin: 0 4px;
             flex: 0 0 auto;
@@ -100,7 +91,7 @@ export const SuggestionWrapper = styled.div<DefaultTheme>`
             padding: 0;
             background: 0 0;
             font-weight: 600;
-            color: ${(props) => props.colors.skyBlue};
+            color: ${(props) => props.colors.blue1};
             display: inline-block;
         }
     }
@@ -109,9 +100,19 @@ export const SuggestionWrapper = styled.div<DefaultTheme>`
 export const CompanyWrapper = styled.div`
     margin-bottom: 24px;
     flex: 0 0 auto;
+    align-items: center;
+
+    & > span {
+        width: 52px;
+        height: 26px;
+        display: block;
+        background-position: -242px -194px;
+        background-size: 553px 524px;
+        background-image: url('/images/sprite/icons.png');
+    }
 `;
-export const LanguageWrapper = styled.span<ILanguageWrapper>`
-    color: ${(props) => props.color};
+export const LanguageWrapper = styled.span<DefaultTheme>`
+    color: ${(props) => props.colors.gray1};
     font-size: 12px;
     width: 100%;
 
@@ -129,5 +130,7 @@ export const LanguageWrap = styled.div`
     align-items: center;
     justify-content: center;
 `;
-export const ArrowWrapper = styled.div``;
+export const ArrowWrapper = styled.div`
+    margin-left: 4px;
+`;
 export const ArrowWrap = styled.div``;
