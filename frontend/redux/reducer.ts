@@ -2,7 +2,7 @@ import { combineReducers, AnyAction } from '@reduxjs/toolkit';
 
 import { HYDRATE } from 'next-redux-wrapper';
 import { AppState } from '../redux/store';
-import loginReducer from '@/features/index/login/login.slice';
+import loginReducer from '@/features/main/login/login.slice';
 
 const rootReducer = combineReducers({
     loginReducer,
