@@ -17,6 +17,7 @@
         "baseUrl" : ".",
         "paths" : {
           "@/features/*" : ["features/*"],
+          "@/fragments/*" : ["fragments/*"],
           "@/pages/*" : ["pages/*"],
           "@/public/*" : ["public/*"],
           "@/styles/*" : ["styles/*"]
