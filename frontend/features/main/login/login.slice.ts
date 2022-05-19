@@ -1,17 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface LoginState {
-    id: string | undefined;
-    password: string | undefined;
+    id: string;
+    pw: string;
 }
 
 const initialState: LoginState = {
-    id: undefined,
-    password: undefined,
+    id: '',
+    pw: '',
 };
 
 interface IChangeInputPayload {
-    key: 'id' | 'password';
+    key: 'id' | 'pw';
     value: string;
 }
 
