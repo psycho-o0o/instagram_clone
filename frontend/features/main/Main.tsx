@@ -44,12 +44,10 @@ function Main({ userAgent }: IProps) {
             return;
         }
 
-        if (ua.os.name === 'Android') {
-            window.open(googlePlayUrl, '__blank');
-        } else if (ua.os.name === 'iOS') {
+        if (ua.os.name === 'iOS') {
             window.open(AppStoreUrl, '__blank');
         } else {
-            window.alert('지원하지 않는 운영체제입니다.');
+            window.open(googlePlayUrl, '__blank');
         }
     }, [i18n?.language]);
 
