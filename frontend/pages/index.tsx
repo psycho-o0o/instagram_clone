@@ -1,10 +1,7 @@
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 import {
-    GetServerSideProps,
     GetServerSidePropsContext,
     GetServerSidePropsResult,
-    GetStaticPropsContext,
-    GetStaticPropsResult,
 } from 'next';
 import { SSRConfig } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -44,7 +41,7 @@ export const getServerSideProps = async ({
             userAgent: req ? req.headers['user-agent'] : navigator.userAgent,
             ...(await serverSideTranslations(
                 locale || (defaultLocale as string),
-                ['main'],
+                ['main', 'login'],
                 nextI18NextConfig
             )),
         },
