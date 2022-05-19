@@ -17,16 +17,16 @@ import {
     LogoWrap,
     LogoWrapper,
     SuggestionWrapper,
-} from './Login.style';
+} from './Main.style';
 
 interface IProps {
     userAgent: string | undefined;
 }
 
-function Login({ userAgent }: IProps) {
+function Main({ userAgent }: IProps) {
     const theme = useTheme();
     const ua = parser(userAgent);
-    const { t } = useTranslation('login');
+    const { t } = useTranslation('main');
 
     const onChangeLanguage = useCallback(
         (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -112,4 +112,4 @@ function Login({ userAgent }: IProps) {
     );
 }
 
-export default Login;
+export default Main;

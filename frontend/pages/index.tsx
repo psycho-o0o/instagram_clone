@@ -1,11 +1,17 @@
-import React from 'react';
-import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
+import React, { useCallback, useEffect } from 'react';
+import {
+    GetServerSideProps,
+    GetServerSidePropsContext,
+    GetServerSidePropsResult,
+    GetStaticPropsContext,
+    GetStaticPropsResult,
+} from 'next';
 import { SSRConfig } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import nextI18NextConfig from '../next-i18next.config';
 import styled from 'styled-components';
-import Login from '@/features/login/Login';
-import Footer from '@/features/footer/Footer';
+import Main from '@/features/main/Main';
+import Footer from '@/features/common/footer/Footer';
 
 const StyledSection = styled.section`
     min-height: 100vh;
@@ -13,24 +19,32 @@ const StyledSection = styled.section`
     flex-grow: 1;
 `;
 
-function App() {
+type PropsType = IUserAgent & SSRConfig;
+
+interface IUserAgent {
+    userAgent: string | undefined;
+}
+
+function App({ userAgent }: PropsType) {
     return (
         <StyledSection>
-            <Login />
+            <Main userAgent={userAgent} />
             <Footer />
         </StyledSection>
     );
 }
 
-export const getStaticProps = async ({
+export const getServerSideProps = async ({
+    req,
     locale,
-    defaultLocale
-}: GetStaticPropsContext): Promise<GetStaticPropsResult<SSRConfig>> => {
+    defaultLocale,
+}: GetServerSidePropsContext): Promise<GetServerSidePropsResult<PropsType>> => {
     return {
         props: {
+            userAgent: req ? req.headers['user-agent'] : navigator.userAgent,
             ...(await serverSideTranslations(
-                locale || defaultLocale as string,
-                ['login'],
+                locale || (defaultLocale as string),
+                ['main'],
                 nextI18NextConfig
             )),
         },
