@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import { Schema } from 'mongoose';
 
 // 참고 : https://github.com/Zwimber/mongoose-style-guide
 const UserSchema = new Schema({
@@ -14,3 +14,4 @@ UserSchema.pre('save', function (next) {
 	next();
 });
 
+export default UserSchema;
