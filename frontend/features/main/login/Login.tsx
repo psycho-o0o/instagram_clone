@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
-import loginSlice, { changeInput } from './login.slice';
+import { changeInput, LoginThunk } from './login.slice';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { useTheme } from 'styled-components';
 import {
@@ -44,6 +44,13 @@ function Login() {
         setShowPw((s) => !s);
     }, []);
 
+    const onSubmit = useCallback((e : React.FormEvent) => {
+        e.preventDefault();
+        dispatch(LoginThunk({
+            id, pw
+        }))
+    }, [id, pw])
+
     const isEmptyId = useMemo(() => {
         return id.length === 0;
     }, [id]);
@@ -58,10 +65,13 @@ function Login() {
 
     return (
         <LoginWrapper>
-            <form action="">
+            <form onSubmit={onSubmit}>
                 <div className="top">
                     <FacebookLoginButtonWrapper>
-                        <FacebookLoginButton colors={theme.colors}>
+                        <FacebookLoginButton
+                            colors={theme.colors}
+                            type="button"
+                        >
                             <a href="">
                                 <span />
                                 {t('facebookLogin')}
@@ -136,6 +146,7 @@ function Login() {
                     </ForgotPasswordWrapper>
                     <LoginButtonWrapper>
                         <LoginButton
+                            type="submit"
                             colors={theme.colors}
                             isPossibleLogin={isPossibleLogin}
                         >
