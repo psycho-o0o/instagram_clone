@@ -8,16 +8,11 @@ import {
 } from 'jsonwebtoken';
 import * as fs from 'fs';
 import * as path from 'path';
+import { IUserSchemaProps } from '../db/model/user';
 
-export function generateToken() {
-	const payload = {
-		__id: '1',
-		phone: '01081389280',
-		email: 'rjs595959@naver.com',
-		name: '장동건',
-		nickName: 'evoDev'
-	};
+type payloadType = Omit<IUserSchemaProps, 'password'>;
 
+export function generateToken(payload: payloadType) {
 	const privateKey = fs.readFileSync(
 		path.join(__dirname, './../../../private.key')
 	);
@@ -28,7 +23,7 @@ export function generateToken() {
 
 	return sign(
 		payload,
-		{ key: privateKey, passphrase: 'evoDev' },
+		{ key: privateKey, passphrase: process.env.PASS_PHRASE as string },
 		signInOptions
 	);
 }
