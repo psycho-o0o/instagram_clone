@@ -3,4 +3,6 @@ node_modules
 
 .env
 
+backend/private.key
+backend/public.key
 backend/dist/*
