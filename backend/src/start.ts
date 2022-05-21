@@ -1,5 +1,6 @@
 import fs from 'fs';
 import crypto from 'crypto';
+import bcrypt from 'bcrypt';
 import readlineSync from 'readline-sync';
 import { exit } from 'process';
 
@@ -12,10 +13,10 @@ if (!fs.existsSync('.env')) {
 
 		const port = readlineSync.question('port : ');
 		const dbAddr = readlineSync.question('database address : ');
-		const salt = readlineSync.question('salt for hashing : ');
 		const passphrase = readlineSync.question(
 			'passPhrase for private and public key : '
 		);
+		const salt = bcrypt.genSaltSync(10);
 
 		if (fs.fstatSync(fd).size === 0) {
 			fs.writeFileSync(
