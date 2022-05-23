@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { changeInput, LoginThunk } from './login.slice';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { useTheme } from 'styled-components';
+import { ILoginProps } from './login.interface';
 import {
     ToggleWrapper,
     FacebookLoginButton,
@@ -20,9 +21,7 @@ import {
     ToggleWrap,
 } from './Login.style';
 
-interface ILoginProps {
-    onClickRegister: () => void;
-}
+
 
 function Login({ onClickRegister }: ILoginProps) {
     const theme = useTheme();
