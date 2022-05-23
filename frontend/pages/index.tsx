@@ -41,7 +41,7 @@ export const getServerSideProps = async ({
             userAgent: req ? req.headers['user-agent'] : navigator.userAgent,
             ...(await serverSideTranslations(
                 locale || (defaultLocale as string),
-                ['main', 'login'],
+                ['main', 'login', 'register'],
                 nextI18NextConfig
             )),
         },

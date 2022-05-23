@@ -1,0 +1,13 @@
+{
+    "facebookLogin" : "Facebook으로 계속하기",
+    "or" : "또는",
+    "placeholderAboutId" : "휴대폰 번호 또는 이메일 주소",
+    "placeholderAboutName" : "성명",
+    "placeholderAboutNickName" : "사용자 이름",
+    "placeholderAboutPassword" : "비밀번호",
+    "showPassword" : "비밀번호 표시",
+    "hidePassword" :  "숨기기",
+    "signUp" : "가입",
+    "logInText" : "계정이 있으신가요?",
+    "logInButton" : "로그인"
+}
