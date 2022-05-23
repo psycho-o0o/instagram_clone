@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-
-interface ILoginApiProps {
-    id: string;
-    pw: string;
-}
+import {
+    ILoginState,
+    IChangeInputPayload,
+    ILoginApiProps,
+    ILoginThunkFulfilledProps,
+    ILoginThunkRejectedProps,
+} from './login.interface';
 
 export const LoginThunk = createAsyncThunk(
     'login/loginApi',
@@ -27,22 +29,12 @@ export const LoginThunk = createAsyncThunk(
     }
 );
 
-export interface LoginState {
-    id: string;
-    pw: string;
-    error: null | string;
-}
 
-const initialState: LoginState = {
+const initialState: ILoginState = {
     id: '',
     pw: '',
     error: null,
 };
-
-interface IChangeInputPayload {
-    key: 'id' | 'pw';
-    value: string;
-}
 
 export const loginSlice = createSlice({
     name: 'login',
@@ -52,15 +44,14 @@ export const loginSlice = createSlice({
             state[action.payload.key] = action.payload.value;
         },
     },
-    extraReducers: (builder) => {
-        builder
-            .addCase(LoginThunk.fulfilled, (state, { payload: { jwt } }) => {
-                console.log(jwt);
-            })
-            .addCase(LoginThunk.rejected, (state, { payload }) => {
-                console.log(payload);
-            });
-    },
+    extraReducers: {
+        [LoginThunk.fulfilled.type] : (state, {payload :  {jwt}} : PayloadAction<ILoginThunkFulfilledProps>) => {
+            localStorage.setItem('jwt', jwt);
+        },
+        [LoginThunk.rejected.type] : (state, {payload : {message}} : PayloadAction<ILoginThunkRejectedProps>) => {
+            state.error = message
+        }
+    }
 });
 
 // Action creators are generated for each case reducer function
