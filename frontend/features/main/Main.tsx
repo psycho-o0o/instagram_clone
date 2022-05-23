@@ -89,7 +89,7 @@ function Main({ userAgent }: IProps) {
                 </LanguageWrapper>
             </StyledNav>
             <StyledArticle>
-                <MainWrapper isClickedLogin={isClickedLogin}>
+                <MainWrapper hideTopPadding={isClickedLogin || isClickedRegister}>
                     <LogoWrapper>
                         <LogoWrap>
                             <Image
@@ -101,7 +101,7 @@ function Main({ userAgent }: IProps) {
                             ></Image>
                         </LogoWrap>
                     </LogoWrapper>
-                    <SuggestionWrapper colors={theme.colors} hide={isClickedLogin}>
+                    <SuggestionWrapper colors={theme.colors} hide={isClickedLogin || isClickedRegister}>
                             <div className="top">
                                 <div>{t('suggestion')}</div>
                             </div>
@@ -118,11 +118,11 @@ function Main({ userAgent }: IProps) {
                                     {t('logIn')}
                                 </button>
                                 <div>{t('or')}</div>
-                                <button>{t('signUp')}</button>
+                                <button onClick={onClickRegister}>{t('signUp')}</button>
                             </div>
                         </SuggestionWrapper>
-                    {isClickedLogin && <Login />}
-                    {isClickedRegister && <Register />}
+                    {isClickedLogin && <Login onClickRegister={onClickRegister} />}
+                    {isClickedRegister && <Register onClickLogIn={onClickLogIn} />}
                 </MainWrapper>
             </StyledArticle>
             <CompanyWrapper>

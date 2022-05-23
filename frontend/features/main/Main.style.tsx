@@ -2,7 +2,7 @@ import styled, { DefaultTheme } from 'styled-components';
 import { Button1 } from '@/fragments/Buttons';
 
 interface IMainWrapperProps {
-    isClickedLogin: boolean;
+    hideTopPadding: boolean;
 }
 
 interface ISuggestionWrapperProps {
@@ -25,7 +25,7 @@ export const StyledArticle = styled.article`
     max-width: 935px;
 `;
 export const MainWrapper = styled.div<IMainWrapperProps>`
-    padding-top: ${(props) => (props.isClickedLogin ? '0px' : '100px')};
+    padding-top: ${(props) => (props.hideTopPadding ? '0px' : '100px')};
     padding-bottom: 60px;
     max-width: 100%;
     justify-content: flex-start;
