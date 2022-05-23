@@ -1,10 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import Image from 'next/image';
 import { i18n, useTranslation } from 'next-i18next';
+import parser from 'ua-parser-js';
 import { useTheme } from 'styled-components';
 import Login from './login/Login';
+import Register from './register/Register';
 import { DownOutlined } from '@ant-design/icons';
-import parser from 'ua-parser-js';
 import {
     StyledMain,
     StyledNav,
@@ -30,6 +31,7 @@ function Main({ userAgent }: IProps) {
     const ua = parser(userAgent);
     const { t } = useTranslation('main');
     const [isClickedLogin, setIsClickedLogin] = useState(false);
+    const [isClickedRegister, setIsClickedRegister] = useState(false);
 
     const onChangeLanguage = useCallback(
         (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -56,7 +58,13 @@ function Main({ userAgent }: IProps) {
 
     const onClickLogIn = useCallback(() => {
         setIsClickedLogin(true);
+        setIsClickedRegister(false);
     }, []);
+
+    const onClickRegister = useCallback(() => {
+        setIsClickedRegister(true);
+        setIsClickedLogin(false);
+    }, [])
 
     return (
         <StyledMain>
@@ -93,10 +101,7 @@ function Main({ userAgent }: IProps) {
                             ></Image>
                         </LogoWrap>
                     </LogoWrapper>
-                    {isClickedLogin ? (
-                        <Login />
-                    ) : (
-                        <SuggestionWrapper colors={theme.colors}>
+                    <SuggestionWrapper colors={theme.colors} hide={isClickedLogin}>
                             <div className="top">
                                 <div>{t('suggestion')}</div>
                             </div>
@@ -116,7 +121,8 @@ function Main({ userAgent }: IProps) {
                                 <button>{t('signUp')}</button>
                             </div>
                         </SuggestionWrapper>
-                    )}
+                    {isClickedLogin && <Login />}
+                    {isClickedRegister && <Register />}
                 </MainWrapper>
             </StyledArticle>
             <CompanyWrapper>

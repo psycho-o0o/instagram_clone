@@ -1,8 +1,12 @@
 import styled, { DefaultTheme } from 'styled-components';
 import { Button1 } from '@/fragments/Buttons';
 
-interface IMainWrapper {
+interface IMainWrapperProps {
     isClickedLogin: boolean;
+}
+
+interface ISuggestionWrapperProps {
+    hide : boolean
 }
 
 export const StyledMain = styled.main`
@@ -20,7 +24,7 @@ export const StyledArticle = styled.article`
     width: 100%;
     max-width: 935px;
 `;
-export const MainWrapper = styled.div<IMainWrapper>`
+export const MainWrapper = styled.div<IMainWrapperProps>`
     padding-top: ${(props) => (props.isClickedLogin ? '0px' : '100px')};
     padding-bottom: 60px;
     max-width: 100%;
@@ -38,7 +42,8 @@ export const LogoWrap = styled.div`
     align-items: center;
 `;
 
-export const SuggestionWrapper = styled.div<DefaultTheme>`
+export const SuggestionWrapper = styled.div<ISuggestionWrapperProps & DefaultTheme>`
+    display : ${props => props.hide && 'none'};
     & > .top {
         margin-top: 4px;
         margin-right: 40px;
