@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosInstance from '@/utils/axios';
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import {
     ILoginState,
@@ -12,23 +12,13 @@ export const LoginThunk = createAsyncThunk(
     'login/loginApi',
     async (data: ILoginApiProps, { rejectWithValue }) => {
         try {
-            const axioxConfig = {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            };
-            const response = await axios.post(
-                '/api/users/login',
-                data,
-                axioxConfig
-            );
+            const response = await axiosInstance.post('/api/users/login', data);
             return response?.data;
         } catch (err: any) {
             return rejectWithValue(err.response.data);
         }
     }
 );
-
 
 const initialState: ILoginState = {
     id: '',
@@ -45,13 +35,22 @@ export const loginSlice = createSlice({
         },
     },
     extraReducers: {
-        [LoginThunk.fulfilled.type] : (state, {payload :  {jwt}} : PayloadAction<ILoginThunkFulfilledProps>) => {
+        [LoginThunk.pending.type]: (state) => {
+            state.error = null;
+        },
+        [LoginThunk.fulfilled.type]: (
+            state,
+            { payload: { jwt } }: PayloadAction<ILoginThunkFulfilledProps>
+        ) => {
             localStorage.setItem('jwt', jwt);
         },
-        [LoginThunk.rejected.type] : (state, {payload : {message}} : PayloadAction<ILoginThunkRejectedProps>) => {
-            state.error = message
-        }
-    }
+        [LoginThunk.rejected.type]: (
+            state,
+            { payload: { message } }: PayloadAction<ILoginThunkRejectedProps>
+        ) => {
+            state.error = message;
+        },
+    },
 });
 
 // Action creators are generated for each case reducer function

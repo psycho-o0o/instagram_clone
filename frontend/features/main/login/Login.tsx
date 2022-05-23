@@ -1,9 +1,9 @@
 import React, { useCallback, useState, useMemo } from 'react';
-import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { changeInput, LoginThunk } from './login.slice';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { useTheme } from 'styled-components';
+import { ILoginProps } from './login.interface';
 import {
     ToggleWrapper,
     FacebookLoginButton,
@@ -21,7 +21,9 @@ import {
     ToggleWrap,
 } from './Login.style';
 
-function Login() {
+
+
+function Login({ onClickRegister }: ILoginProps) {
     const theme = useTheme();
     const { t } = useTranslation('login');
     const [showPw, setShowPw] = useState(false);
@@ -44,12 +46,18 @@ function Login() {
         setShowPw((s) => !s);
     }, []);
 
-    const onSubmit = useCallback((e : React.FormEvent) => {
-        e.preventDefault();
-        dispatch(LoginThunk({
-            id, pw
-        }))
-    }, [id, pw])
+    const onSubmit = useCallback(
+        (e: React.FormEvent) => {
+            e.preventDefault();
+            dispatch(
+                LoginThunk({
+                    id,
+                    pw,
+                })
+            );
+        },
+        [id, pw]
+    );
 
     const isEmptyId = useMemo(() => {
         return id.length === 0;
@@ -155,14 +163,14 @@ function Login() {
                     </LoginButtonWrapper>
                 </div>
                 <div className="bottom">
-                    <SignUpWrapper colors={theme.colors}>
+                    <SignUpWrapper colors={theme.colors} onClick={onClickRegister}>
                         <p>
                             {t('signUpText')}
-                            <Link href="/accounts/signup/phone">
-                                <SignUpWrap colors={theme.colors}>
-                                    {t('signUpButton')}
-                                </SignUpWrap>
-                            </Link>
+                            <SignUpWrap
+                                colors={theme.colors}
+                            >
+                                {t('signUpButton')}
+                            </SignUpWrap>
                         </p>
                     </SignUpWrapper>
                 </div>
