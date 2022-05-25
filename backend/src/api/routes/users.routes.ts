@@ -80,7 +80,7 @@ router.post(
 	'/register',
 	async (req: Request, res: Response, next: NextFunction) => {
 		const { id, name, nickName, pw } = req.body;
-		if ([id, name, nickName, pw].includes(undefined)) {
+		if ([id, name, nickName, pw].includes('')) {
 			res.status(401).send({ message: 'not entered input' }); // Unauthorized
 			return;
 		}
@@ -96,10 +96,8 @@ router.post(
 
 		if (emailRegExp.test(id)) {
 			idType = 'email';
-			userInfo.email = id;
 		} else if (phoneRegExp.test(id)) {
 			idType = 'phone';
-			userInfo.phone = id;
 		} else {
 			res.status(401).send({ message: 'incorrect id' });
 			return;
@@ -107,15 +105,22 @@ router.post(
 
 		const userModel = mongoose.model('User', UserSchema);
 		try {
-			const isPresent =
-				(await userModel.exists({ idType: userInfo[idType] })) !== null;
-			if (isPresent) {
+			const isPresentAccount =
+				(await userModel.exists({ [idType]: id })) !== null;
+			const isPresentNickName =
+				(await userModel.exists({ nickName })) !== null;
+			if (isPresentAccount) {
 				res.status(401).send({
-					message: 'present user'
+					message: 'present account'
+				});
+				return;
+			} else if (isPresentNickName) {
+				res.status(401).send({
+					message: 'present nickName'
 				});
 				return;
 			} else {
-				const doc = new userModel(userInfo);
+				const doc = new userModel({ [idType]: id, ...userInfo });
 				const payload = (await doc.save()).toObject();
 				delete payload.password;
 
