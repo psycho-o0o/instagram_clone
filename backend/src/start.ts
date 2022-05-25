@@ -25,37 +25,33 @@ if (!fs.existsSync('.env')) {
 			);
 		}
 
-		if (!fs.existsSync('public.key') || !fs.existsSync('private.key')) {
-			crypto.generateKeyPair(
-				'rsa',
-				{
-					modulusLength: 4096,
-					publicKeyEncoding: { type: 'spki', format: 'pem' },
-					privateKeyEncoding: {
-						type: 'pkcs8',
-						format: 'pem',
-						cipher: 'aes-256-cbc',
-						passphrase
-					}
-				},
-				(err, publicKey, privateKey) => {
-					if (err) {
-						console.log(
-							'failed to make private key and public key'
-						);
-						exit(-1);
-					}
-
-					if (fs.existsSync('./public.key')) {
-						fs.rmSync('./public.key');
-						fs.writeFileSync('./public.key', publicKey);
-					}
-					if (fs.existsSync('./private.key')) {
-						fs.rmSync('./private.key');
-						fs.writeFileSync('./private.key', privateKey);
-					}
+		crypto.generateKeyPair(
+			'rsa',
+			{
+				modulusLength: 4096,
+				publicKeyEncoding: { type: 'spki', format: 'pem' },
+				privateKeyEncoding: {
+					type: 'pkcs8',
+					format: 'pem',
+					cipher: 'aes-256-cbc',
+					passphrase
 				}
-			);
-		}
+			},
+			(err, publicKey, privateKey) => {
+				if (err) {
+					console.log('failed to make private key and public key');
+					exit(-1);
+				}
+
+				if (fs.existsSync('./public.key')) {
+					fs.rmSync('./public.key');
+				}
+				if (fs.existsSync('./private.key')) {
+					fs.rmSync('./private.key');
+				}
+				fs.writeFileSync('./public.key', publicKey);
+				fs.writeFileSync('./private.key', privateKey);
+			}
+		);
 	});
 }
