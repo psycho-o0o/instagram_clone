@@ -19,9 +19,8 @@ import {
     SignUpWrap,
     SignUpWrapper,
     ToggleWrap,
+    ErrorWrapper,
 } from './Login.style';
-
-
 
 function Login({ onClickRegister }: ILoginProps) {
     const theme = useTheme();
@@ -29,9 +28,10 @@ function Login({ onClickRegister }: ILoginProps) {
     const [showPw, setShowPw] = useState(false);
 
     const dispatch = useAppDispatch();
-    const { id, pw } = useAppSelector((state) => ({
+    const { id, pw, error } = useAppSelector((state) => ({
         id: state.login.id,
         pw: state.login.pw,
+        error: state.login.error,
     }));
 
     const onChangeId = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,6 +58,11 @@ function Login({ onClickRegister }: ILoginProps) {
         },
         [id, pw]
     );
+
+    const errorText = useMemo(() => {
+        if (error === null) return '';
+        else return t(error);
+    }, [error]);
 
     const isEmptyId = useMemo(() => {
         return id.length === 0;
@@ -161,14 +166,18 @@ function Login({ onClickRegister }: ILoginProps) {
                             <div className="text">{t('logIn')}</div>
                         </LoginButton>
                     </LoginButtonWrapper>
+                    <ErrorWrapper hide={error === null} colors={theme.colors}>
+                        {errorText}
+                    </ErrorWrapper>
                 </div>
                 <div className="bottom">
-                    <SignUpWrapper colors={theme.colors} onClick={onClickRegister}>
+                    <SignUpWrapper
+                        colors={theme.colors}
+                        onClick={onClickRegister}
+                    >
                         <p>
                             {t('signUpText')}
-                            <SignUpWrap
-                                colors={theme.colors}
-                            >
+                            <SignUpWrap colors={theme.colors}>
                                 {t('signUpButton')}
                             </SignUpWrap>
                         </p>

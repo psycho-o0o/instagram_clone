@@ -13,6 +13,10 @@ interface ILoginButton {
     isPossibleLogin: boolean;
 }
 
+interface IErrorWrapperProps {
+    hide : boolean;
+}
+
 export const LoginWrapper = styled.div`
     margin-bottom: 10px;
     max-width: 350px;
@@ -218,6 +222,15 @@ export const LoginButton = styled.button<ILoginButton & DefaultTheme>`
     text-transform: inherit;
     width: auto;
 `;
+
+export const ErrorWrapper = styled.div<IErrorWrapperProps & DefaultTheme>`
+    color : ${props => props.colors.red2};
+    display : ${props => props.hide ? 'none' : 'block'};
+    margin: 10px 40px;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+`
 
 export const SignUpWrapper = styled.div<DefaultTheme>`
     color: ${(props) => props.colors.gray1};

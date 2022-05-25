@@ -7,6 +7,9 @@
     "hidePassword" :  "Hide",
     "forgetPassword" : "Forgot Password",
     "logIn" : "Log In",
+    "unknown error" : "We couldn't connect to Instagram. Make sure you're connected to the internet and try again.",
+    "non-existent id" : "Id is not exist.",
+    "incorrect password" : "Password is not correct.",
     "signUpText" : "Don't have an account?",
     "signUpButton" : "Sign up"
 }

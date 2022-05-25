@@ -7,6 +7,9 @@
     "hidePassword" :  "숨기기",
     "forgetPassword" : "비밀번호를 잊으셨나요?",
     "logIn" : "로그인",
+    "unknown error" : "Instagram에 연결할 수 없습니다. 인터넷에 연결되어 있는지 확인한 후 다시 시도해보세요.",
+    "non-existent id" : "존재하지 않는 아이디입니다.",
+    "incorrect password" : "패스워드를 틀리셨습니다.",
     "signUpText" : "계정이 없으신가요? ",
     "signUpButton" : "가입하기"
 }
