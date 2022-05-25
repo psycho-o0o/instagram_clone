@@ -13,7 +13,7 @@ export interface IRegisterState {
 }
 
 export interface IChangeInputPayload {
-    key : string;
+    key : 'id'|'name'|'nickName'|'pw';
     value: string;
 }
 

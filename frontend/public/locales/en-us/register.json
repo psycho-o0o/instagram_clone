@@ -7,6 +7,11 @@
     "placeholderAboutPassword" : "Password",
     "showPassword" : "Show",
     "hidePassword" :  "Hide",
+    "not entered input" : "Not all entered.",
+    "incorrect id" : "Please enter your email or mobile phone number.",
+    "present account" : "The account already exists.",
+    "present nickName" : "The nickname aready exists.",
+    "unknwon error" : "We couldn't connect to Instagram. Make sure you're connected to the internet and try again.",
     "signUp" : "Sign Up",
     "logInText" : "Have an account?",
     "logInButton" : "Log in"
