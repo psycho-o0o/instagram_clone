@@ -45,7 +45,7 @@ router.post('/login', (req: Request, res: Response, next: NextFunction) => {
 		if (err !== null) {
 			console.log(`err : ${err}`);
 			res.status(401).send({
-				message: 'unkown error'
+				message: 'unknown error'
 			}); // unauthorized
 			return;
 		}
