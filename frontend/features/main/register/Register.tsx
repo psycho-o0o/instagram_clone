@@ -15,10 +15,13 @@ import {
     RegisterInputWrapper,
     RegisterWrapper,
     OrWrapper,
-    SignUpWrap,
-    SignUpWrapper,
+    LoginWrap,
+    LoginWrapper,
     ToggleWrap,
+    ErrorWrapper,
 } from './Register.style';
+
+type InputNameType = 'id' | 'pw' | 'nickName' | 'name';
 
 function Register({ onClickLogIn }: IRegisterProps) {
     const theme = useTheme();
@@ -26,18 +29,25 @@ function Register({ onClickLogIn }: IRegisterProps) {
     const [showPw, setShowPw] = useState(false);
 
     const dispatch = useAppDispatch();
-    const { id, name, nickName, pw } = useAppSelector((state) => ({
+    const { id, name, nickName, pw, error } = useAppSelector((state) => ({
         id: state.register.id,
         name: state.register.name,
         nickName: state.register.nickName,
         pw: state.register.pw,
+        error: state.register.error,
     }));
 
-    const onChangeInputValue = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(
-            changeInput({ key: e.target.name, value: e.currentTarget.value })
-        );
-    }, []);
+    const onChangeInputValue = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            dispatch(
+                changeInput({
+                    key: e.target.name as InputNameType,
+                    value: e.currentTarget.value,
+                })
+            );
+        },
+        []
+    );
 
     const onClickTogglePassword = useCallback(() => {
         setShowPw((s) => !s);
@@ -55,8 +65,13 @@ function Register({ onClickLogIn }: IRegisterProps) {
                 })
             );
         },
-        [id, pw]
+        [id, name, nickName, pw]
     );
+
+    const errorText = useMemo(() => {
+        if (error === null) return '';
+        else return t(error);
+    }, [error]);
 
     const isEmptyId = useMemo(() => {
         return id.length === 0;
@@ -75,7 +90,12 @@ function Register({ onClickLogIn }: IRegisterProps) {
     }, [pw]);
 
     const isPossibleRegister = useMemo(() => {
-        return id.length > 0 && name.length > 0 && nickName.length > 0 && pw.length >= 6;
+        return (
+            id.length > 0 &&
+            name.length > 0 &&
+            nickName.length > 0 &&
+            pw.length >= 6
+        );
     }, [id, name, nickName, pw]);
 
     return (
@@ -209,16 +229,19 @@ function Register({ onClickLogIn }: IRegisterProps) {
                             <div className="text">{t('signUp')}</div>
                         </RegisterButton>
                     </RegisterButtonWrapper>
+                    <ErrorWrapper hide={error === null} colors={theme.colors}>
+                        {errorText}
+                    </ErrorWrapper>
                 </div>
                 <div className="bottom">
-                    <SignUpWrapper colors={theme.colors} onClick={onClickLogIn}>
+                    <LoginWrapper colors={theme.colors} onClick={onClickLogIn}>
                         <p>
                             {t('logInText')}
-                            <SignUpWrap colors={theme.colors}>
+                            <LoginWrap colors={theme.colors}>
                                 {t('logInButton')}
-                            </SignUpWrap>
+                            </LoginWrap>
                         </p>
-                    </SignUpWrapper>
+                    </LoginWrapper>
                 </div>
             </form>
         </RegisterWrapper>

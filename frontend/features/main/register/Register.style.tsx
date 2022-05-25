@@ -13,6 +13,10 @@ interface IRegisterButton {
     isPossibleRegister: boolean;
 }
 
+interface IErrorWrapperProps {
+    hide : boolean;
+}
+
 export const RegisterWrapper = styled.div`
     margin-bottom: 10px;
     max-width: 350px;
@@ -219,7 +223,16 @@ export const RegisterButton = styled.button<IRegisterButton & DefaultTheme>`
     width: auto;
 `;
 
-export const SignUpWrapper = styled.div<DefaultTheme>`
+export const ErrorWrapper = styled.div<IErrorWrapperProps & DefaultTheme>`
+    color : ${props => props.colors.red2};
+    display : ${props => props.hide ? 'none' : 'block'};
+    margin: 10px 40px;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+`
+
+export const LoginWrapper = styled.div<DefaultTheme>`
     color: ${(props) => props.colors.gray1};
     font-weight: 400;
     font-size: 14px;
@@ -230,7 +243,7 @@ export const SignUpWrapper = styled.div<DefaultTheme>`
     align-items: center;
 `;
 
-export const SignUpWrap = styled.span<DefaultTheme>`
+export const LoginWrap = styled.span<DefaultTheme>`
     margin: 0;
     margin-left: 4px;
     color: ${(props) => props.colors.blue1};

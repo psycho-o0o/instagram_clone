@@ -7,6 +7,11 @@
     "placeholderAboutPassword" : "비밀번호",
     "showPassword" : "비밀번호 표시",
     "hidePassword" :  "숨기기",
+    "not entered input" : "모두 입력하지 않았습니다.",
+    "incorrect id" : "이메일이나 휴대폰 번호를 입력해주세요.",
+    "present account" : "이미 계정이 존재합니다.",
+    "present nickName" : "사용자 이름이 존재합니다.",
+    "unknown error" : "Instagram에 연결할 수 없습니다. 인터넷에 연결되어 있는지 확인한 후 다시 시도해보세요.",
     "signUp" : "가입",
     "logInText" : "계정이 있으신가요?",
     "logInButton" : "로그인"
