@@ -29,11 +29,10 @@ function Login({ onClickRegister }: ILoginProps) {
     const [showPw, setShowPw] = useState(false);
     const router = useRouter();
     const dispatch = useAppDispatch();
-    const { id, pw, isLogin, error } = useAppSelector((state) => ({
+    const { id, pw, error } = useAppSelector((state) => ({
         id: state.login.id,
         pw: state.login.pw,
         error: state.login.error,
-        isLogin: state.login.isLogin,
     }));
 
     const onChangeId = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,10 +76,6 @@ function Login({ onClickRegister }: ILoginProps) {
     const isPossibleLogin = useMemo(() => {
         return id.length > 0 && pw.length >= 6;
     }, [id, pw]);
-
-    useEffect(() => {
-        if(isLogin) router.push('/home');
-    }, [isLogin])
 
     return (
         <LoginWrapper>
@@ -136,7 +131,11 @@ function Login({ onClickRegister }: ILoginProps) {
                                     autoCapitalize="off"
                                     autoCorrect="off"
                                     maxLength={75}
-                                    type={showPw === true ? 'text' : 'password'}
+                                    type={
+                                        showPw === true
+                                            ? 'text'
+                                            : 'password'
+                                    }
                                     value={pw}
                                     onChange={onChangePw}
                                 />
@@ -160,7 +159,9 @@ function Login({ onClickRegister }: ILoginProps) {
                     </LoginInputWrapper>
                     <ForgotPasswordWrapper colors={theme.colors}>
                         <a href="/accounts/password/reset/" tabIndex={0}>
-                            <div className="text">{t('forgetPassword')}</div>
+                            <div className="text">
+                                {t('forgetPassword')}
+                            </div>
                         </a>
                     </ForgotPasswordWrapper>
                     <LoginButtonWrapper>
@@ -172,7 +173,10 @@ function Login({ onClickRegister }: ILoginProps) {
                             <div className="text">{t('logIn')}</div>
                         </LoginButton>
                     </LoginButtonWrapper>
-                    <ErrorWrapper hide={error === null} colors={theme.colors}>
+                    <ErrorWrapper
+                        hide={error === null}
+                        colors={theme.colors}
+                    >
                         {errorText}
                     </ErrorWrapper>
                 </div>

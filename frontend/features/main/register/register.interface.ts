@@ -17,17 +17,3 @@ export interface IChangeInputPayload {
     value: string;
 }
 
-export interface IRegisterApiProps {
-    id: string;
-    name : string;
-    nickName : string;
-    pw: string;
-}
-
-export interface IRegisterThunkFulfilledProps {
-    jwt: string;
-}
-
-export interface IRegisterThunkRejectedProps {
-    message: string;
-}

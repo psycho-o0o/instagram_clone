@@ -2,12 +2,12 @@ import { combineReducers, AnyAction } from '@reduxjs/toolkit';
 
 import { HYDRATE } from 'next-redux-wrapper';
 import { AppState } from '../redux/store';
-import home from '@/features/home/home.slice';
+import user from '@/features/user/user.slice';
 import login from '@/features/main/login/login.slice';
 import register from '@/features/main/register/register.slice';
 
 const rootReducer = combineReducers({
-    home,
+    user,
     login,
     register,
 });
