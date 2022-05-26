@@ -2,7 +2,7 @@ import express, { NextFunction, Router, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import UserSchema, { IUserSchemaProps } from '../db/model/user';
 import { makeHashPassword, comparePassword } from '../../api/utils/user.utils';
-import { generateToken } from '../../api/utils/jwt.utils';
+import { generateToken, validateToken } from '../../api/utils/jwt.utils';
 import e from 'express';
 
 interface IRequestUserInfoProps {
@@ -135,6 +135,20 @@ router.post(
 				message: 'unkown error'
 			});
 		}
+	}
+);
+
+router.post(
+	'/check',
+	async (req: Request, res: Response, next: NextFunction) => {
+		const {jwt} = req.body;
+		try{
+			await validateToken(jwt);
+			res.status(201).send();
+		} catch(e) {
+			res.status(401).send({message : 'incorrect jwt'});
+		}
+
 	}
 );
 
