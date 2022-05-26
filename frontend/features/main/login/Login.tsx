@@ -1,4 +1,5 @@
-import React, { useCallback, useState, useMemo } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { changeInput, LoginThunk } from './login.slice';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
@@ -26,12 +27,13 @@ function Login({ onClickRegister }: ILoginProps) {
     const theme = useTheme();
     const { t } = useTranslation('login');
     const [showPw, setShowPw] = useState(false);
-
+    const router = useRouter();
     const dispatch = useAppDispatch();
-    const { id, pw, error } = useAppSelector((state) => ({
+    const { id, pw, isLogin, error } = useAppSelector((state) => ({
         id: state.login.id,
         pw: state.login.pw,
         error: state.login.error,
+        isLogin: state.login.isLogin,
     }));
 
     const onChangeId = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,6 +77,10 @@ function Login({ onClickRegister }: ILoginProps) {
     const isPossibleLogin = useMemo(() => {
         return id.length > 0 && pw.length >= 6;
     }, [id, pw]);
+
+    useEffect(() => {
+        if(isLogin) router.push('/home');
+    }, [isLogin])
 
     return (
         <LoginWrapper>
