@@ -1,9 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { i18n, useTranslation } from 'next-i18next';
-import { CheckApi } from '@/features/user/user.slice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import parser from 'ua-parser-js';
 import { useTheme } from 'styled-components';
 import Login from './login/Login';
@@ -33,11 +30,6 @@ function Main({ userAgent }: IProps) {
     const theme = useTheme();
     const ua = parser(userAgent);
     const { t } = useTranslation('main');
-    const router = useRouter();
-    const dispatch = useAppDispatch();
-    const { isLogin } = useAppSelector((state) => ({
-        isLogin: state.user.isLogin,
-    }));
     const [isClickedLogin, setIsClickedLogin] = useState(false);
     const [isClickedRegister, setIsClickedRegister] = useState(false);
 
@@ -73,18 +65,6 @@ function Main({ userAgent }: IProps) {
         setIsClickedRegister(true);
         setIsClickedLogin(false);
     }, []);
-
-    useEffect(() => {
-        const jwt = localStorage.getItem('jwt');
-
-        if (isLogin) {
-            router.push('/home');
-            return;
-        }
-        if (jwt !== null) {
-            dispatch(CheckApi({ jwt }));
-        }
-    }, [isLogin]);
 
     return (
         <StyledMain>

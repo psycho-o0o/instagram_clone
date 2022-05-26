@@ -50,7 +50,7 @@ export const CheckApi = createAsyncThunk(
 
 const initialState: IUserState = {
     isLogin: false,
-    loading : false,
+    loading : true,
     error: null,
 };
 
