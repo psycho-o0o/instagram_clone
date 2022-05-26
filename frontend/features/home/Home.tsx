@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { useTheme } from 'styled-components';
-import { CheckApi } from '@/features/user/user.slice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import {
     Wrapper,
     HeaderWrapper,
@@ -23,18 +20,6 @@ import Menu from '../common/menu/Menu';
 
 function Home() {
     const theme = useTheme();
-    const router = useRouter();
-    const dispatch = useAppDispatch();
-    const { isLogin, loading } = useAppSelector((state) => ({
-        isLogin: state.user.isLogin,
-        loading: state.user.loading,
-    }));
-
-    useEffect(() => {
-        if (isLogin === false) {
-            router.push('/');
-        }
-    }, [isLogin, loading]);
 
     return (
         <Wrapper>
