@@ -6,6 +6,7 @@ export const FooterWrapper = styled.footer`
     right: 0;
     bottom : 0;
     height: 44px;
+    background-color : white;
 `;
 
 export const FooterWrap = styled.div`
