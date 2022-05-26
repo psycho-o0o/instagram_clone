@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useTheme } from 'styled-components';
 import {
+    Wrapper,
     HeaderWrapper,
     HeaderWrap,
     CameraButtonWrapper,
@@ -14,12 +15,13 @@ import {
     StoryWrap,
     StoryWrapper,
 } from './Home.style';
+import Feed from '../common/feed/Feed';
 import Menu from '../common/menu/Menu';
 
 function Home() {
     const theme = useTheme();
     return (
-        <div>
+        <Wrapper>
             <HeaderWrapper>
                 <HeaderWrap>
                     <CameraButtonWrapper>
@@ -38,6 +40,7 @@ function Home() {
                                     src="/images/logo/instagram.png"
                                     width={103}
                                     height={29}
+                                    quality={100}
                                 />
                             </Link>
                         </InstagramLogoWrap>
@@ -56,13 +59,15 @@ function Home() {
             <main>
                 <StoryWrapper colors={theme.colors}>
                     <StoryWrap>
-                       
+                      
                     </StoryWrap>
                 </StoryWrapper>
-                <FeedWrapper></FeedWrapper>
+                <FeedWrapper>
+                    <Feed />
+                </FeedWrapper>
             </main>
-            <Menu />
-        </div>
+            {/* <Menu /> */}
+        </Wrapper>
     );
 }
 
