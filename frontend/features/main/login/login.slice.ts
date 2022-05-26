@@ -23,6 +23,7 @@ export const LoginThunk = createAsyncThunk(
 const initialState: ILoginState = {
     id: '',
     pw: '',
+    isLogin : false,
     error: null,
 };
 
@@ -42,6 +43,7 @@ export const loginSlice = createSlice({
             state,
             { payload: { jwt } }: PayloadAction<ILoginThunkFulfilledProps>
         ) => {
+            state.isLogin = true;
             localStorage.setItem('jwt', jwt);
         },
         [LoginThunk.rejected.type]: (
@@ -49,6 +51,7 @@ export const loginSlice = createSlice({
             { payload: { message } }: PayloadAction<ILoginThunkRejectedProps>
         ) => {
             state.error = message;
+            state.isLogin = false;
         },
     },
 });

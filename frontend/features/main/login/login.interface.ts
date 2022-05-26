@@ -7,6 +7,7 @@ export interface ILoginProps {
 export interface ILoginState {
     id: string;
     pw: string;
+    isLogin : boolean;
     error: null | string;
 }
 
