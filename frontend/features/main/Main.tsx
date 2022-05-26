@@ -1,6 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { i18n, useTranslation } from 'next-i18next';
+import { CheckApi } from '@/features/user/user.slice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import parser from 'ua-parser-js';
 import { useTheme } from 'styled-components';
 import Login from './login/Login';
@@ -30,6 +33,11 @@ function Main({ userAgent }: IProps) {
     const theme = useTheme();
     const ua = parser(userAgent);
     const { t } = useTranslation('main');
+    const router = useRouter();
+    const dispatch = useAppDispatch();
+    const { isLogin } = useAppSelector((state) => ({
+        isLogin: state.user.isLogin,
+    }));
     const [isClickedLogin, setIsClickedLogin] = useState(false);
     const [isClickedRegister, setIsClickedRegister] = useState(false);
 
@@ -64,7 +72,19 @@ function Main({ userAgent }: IProps) {
     const onClickRegister = useCallback(() => {
         setIsClickedRegister(true);
         setIsClickedLogin(false);
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        const jwt = localStorage.getItem('jwt');
+
+        if (isLogin) {
+            router.push('/home');
+            return;
+        }
+        if (jwt !== null) {
+            dispatch(CheckApi({ jwt }));
+        }
+    }, [isLogin]);
 
     return (
         <StyledMain>
@@ -89,40 +109,49 @@ function Main({ userAgent }: IProps) {
                 </LanguageWrapper>
             </StyledNav>
             <StyledArticle>
-                <MainWrapper hideTopPadding={isClickedLogin || isClickedRegister}>
+                <MainWrapper
+                    hideTopPadding={isClickedLogin || isClickedRegister}
+                >
                     <LogoWrapper>
                         <LogoWrap>
                             <Image
                                 src="/images/logo/instagram.png"
                                 width={175}
                                 height={51}
-                                layout="fixed"
+                                quality={100}
                                 priority
                             ></Image>
                         </LogoWrap>
                     </LogoWrapper>
-                    <SuggestionWrapper colors={theme.colors} hide={isClickedLogin || isClickedRegister}>
-                            <div className="top">
-                                <div>{t('suggestion')}</div>
-                            </div>
-                            <div className="middle">
-                                <DownLoadAppButton
-                                    colors={theme.colors}
-                                    onClick={onClickDownloadApp}
-                                >
-                                    {t('downloadApp')}
-                                </DownLoadAppButton>
-                            </div>
-                            <div className="bottom">
-                                <button onClick={onClickLogIn}>
-                                    {t('logIn')}
-                                </button>
-                                <div>{t('or')}</div>
-                                <button onClick={onClickRegister}>{t('signUp')}</button>
-                            </div>
-                        </SuggestionWrapper>
-                    {isClickedLogin && <Login onClickRegister={onClickRegister} />}
-                    {isClickedRegister && <Register onClickLogIn={onClickLogIn} />}
+                    <SuggestionWrapper
+                        colors={theme.colors}
+                        hide={isClickedLogin || isClickedRegister}
+                    >
+                        <div className="top">
+                            <div>{t('suggestion')}</div>
+                        </div>
+                        <div className="middle">
+                            <DownLoadAppButton
+                                colors={theme.colors}
+                                onClick={onClickDownloadApp}
+                            >
+                                {t('downloadApp')}
+                            </DownLoadAppButton>
+                        </div>
+                        <div className="bottom">
+                            <button onClick={onClickLogIn}>{t('logIn')}</button>
+                            <div>{t('or')}</div>
+                            <button onClick={onClickRegister}>
+                                {t('signUp')}
+                            </button>
+                        </div>
+                    </SuggestionWrapper>
+                    {isClickedLogin && (
+                        <Login onClickRegister={onClickRegister} />
+                    )}
+                    {isClickedRegister && (
+                        <Register onClickLogIn={onClickLogIn} />
+                    )}
                 </MainWrapper>
             </StyledArticle>
             <CompanyWrapper>
