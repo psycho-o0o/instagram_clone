@@ -2,8 +2,9 @@ import React, { useCallback, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { useTheme } from 'styled-components';
-import { changeInput, RegisterThunk } from './register.slice';
+import { changeInput } from './register.slice';
 import { IRegisterProps } from './register.interface';
+import { RegisterApi } from '@/features/user/user.slice';
 import {
     ToggleWrapper,
     FacebookLoginButton,
@@ -34,7 +35,7 @@ function Register({ onClickLogIn }: IRegisterProps) {
         name: state.register.name,
         nickName: state.register.nickName,
         pw: state.register.pw,
-        error: state.register.error,
+        error : state.user.error
     }));
 
     const onChangeInputValue = useCallback(
@@ -57,7 +58,7 @@ function Register({ onClickLogIn }: IRegisterProps) {
         (e: React.FormEvent) => {
             e.preventDefault();
             dispatch(
-                RegisterThunk({
+                RegisterApi({
                     id,
                     name,
                     nickName,
