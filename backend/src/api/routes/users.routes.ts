@@ -146,7 +146,7 @@ router.post(
 			await validateToken(jwt);
 			res.status(201).send();
 		} catch(e) {
-			res.status(401).send({message : 'incorrect jwt'});
+			res.status(401).send();
 		}
 
 	}
