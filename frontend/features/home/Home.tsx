@@ -37,22 +37,26 @@ function Home() {
                     <InstagramLogoWrapper>
                         <InstagramLogoWrap>
                             <Link href="/">
-                                <Image
-                                    src="/images/logo/instagram.png"
-                                    width={103}
-                                    height={29}
-                                    quality={100}
-                                />
+                                <a>
+                                    <Image
+                                        src="/images/logo/instagram.png"
+                                        width={103}
+                                        height={29}
+                                        quality={100}
+                                    />
+                                </a>
                             </Link>
                         </InstagramLogoWrap>
                     </InstagramLogoWrapper>
                     <SendMessageWrapper>
                         <Link href="/direct/inbox">
-                            <Image
-                                src="/images/icon/direct.svg"
-                                width={24}
-                                height={24}
-                            />
+                            <a>
+                                <Image
+                                    src="/images/icon/direct.svg"
+                                    width={24}
+                                    height={24}
+                                />
+                            </a>
                         </Link>
                     </SendMessageWrapper>
                 </HeaderWrap>
