@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import { changeInput, LoginThunk } from './login.slice';
+import { changeInput } from './login.slice';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { useTheme } from 'styled-components';
 import { ILoginProps } from './login.interface';
+import { LoginApi } from '@/features/user/user.slice';
 import {
     ToggleWrapper,
     FacebookLoginButton,
@@ -27,12 +28,11 @@ function Login({ onClickRegister }: ILoginProps) {
     const theme = useTheme();
     const { t } = useTranslation('login');
     const [showPw, setShowPw] = useState(false);
-    const router = useRouter();
     const dispatch = useAppDispatch();
     const { id, pw, error } = useAppSelector((state) => ({
         id: state.login.id,
         pw: state.login.pw,
-        error: state.login.error,
+        error : state.user.error
     }));
 
     const onChangeId = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +51,7 @@ function Login({ onClickRegister }: ILoginProps) {
         (e: React.FormEvent) => {
             e.preventDefault();
             dispatch(
-                LoginThunk({
+                LoginApi({
                     id,
                     pw,
                 })
@@ -131,11 +131,7 @@ function Login({ onClickRegister }: ILoginProps) {
                                     autoCapitalize="off"
                                     autoCorrect="off"
                                     maxLength={75}
-                                    type={
-                                        showPw === true
-                                            ? 'text'
-                                            : 'password'
-                                    }
+                                    type={showPw === true ? 'text' : 'password'}
                                     value={pw}
                                     onChange={onChangePw}
                                 />
@@ -159,9 +155,7 @@ function Login({ onClickRegister }: ILoginProps) {
                     </LoginInputWrapper>
                     <ForgotPasswordWrapper colors={theme.colors}>
                         <a href="/accounts/password/reset/" tabIndex={0}>
-                            <div className="text">
-                                {t('forgetPassword')}
-                            </div>
+                            <div className="text">{t('forgetPassword')}</div>
                         </a>
                     </ForgotPasswordWrapper>
                     <LoginButtonWrapper>
@@ -173,10 +167,7 @@ function Login({ onClickRegister }: ILoginProps) {
                             <div className="text">{t('logIn')}</div>
                         </LoginButton>
                     </LoginButtonWrapper>
-                    <ErrorWrapper
-                        hide={error === null}
-                        colors={theme.colors}
-                    >
+                    <ErrorWrapper hide={error === null} colors={theme.colors}>
                         {errorText}
                     </ErrorWrapper>
                 </div>
