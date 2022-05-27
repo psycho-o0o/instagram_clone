@@ -1,12 +1,13 @@
-import styled from 'styled-components';
+import styled, { DefaultTheme } from 'styled-components';
 
-export const FooterWrapper = styled.footer`
+export const FooterWrapper = styled.footer<DefaultTheme>`
     position: fixed;
     left: 0;
     right: 0;
     bottom : 0;
     height: 44px;
     background-color : white;
+    border : 1px solid ${props => props.colors.gray4};
 `;
 
 export const FooterWrap = styled.div`
