@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "front-prettier:fix": "cd frontend && npm run prettier:fix",
-    "front-eslint:fix": "cd frontend && npm run eslint:fix"
+    "front-eslint:fix": "cd frontend && npm run eslint:fix",
+    "front": "cd frontend && npm run dev",
+    "back": "cd backend && npm run dev",
+    "dev": "concurrently \"npm run back\" \"npm run front\""
   },
   "repository": {
     "type": "git",
@@ -18,6 +21,7 @@
   },
   "homepage": "https://github.com/rjs595959/instagram_clone#readme",
   "devDependencies": {
+    "concurrently": "^7.2.1",
     "husky": "^8.0.1",
     "lint-staged": "^12.4.1"
   },
