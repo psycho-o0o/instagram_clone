@@ -3,6 +3,7 @@ import styled, { DefaultTheme } from 'styled-components';
 export const Wrapper = styled.div`
     width: 600px;
     margin: 0 auto;
+    padding-bottom: 50px;
     @media screen and (max-width: 600px) {
         width: 100%;
         margin : 0;
@@ -42,7 +43,8 @@ export const InstagramLogoWrap = styled.div`
 `;
 export const SendMessageWrapper = styled.div`
     flex: 0 0 32px;
-    margin-bottom: 5px;
+    position: relative;
+    top: 2px;
     justify-content: center;
 `;
 export const StoryWrapper = styled.div<DefaultTheme>`

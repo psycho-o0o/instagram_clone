@@ -42,7 +42,7 @@ function App({ userAgent }: PropsType) {
         }
     }, [isLogin]);
 
-    if (loading || isLogin) return <div></div>;
+    if (isLogin) return <div></div>;
     else {
         return (
             <StyledSection>
