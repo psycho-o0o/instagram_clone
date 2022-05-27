@@ -18,7 +18,6 @@ import {
     FunctionButtonWrapper,
     FunctionButtonWrap,
     GoodCountWrapper,
-    TimeWrapper,
     ExplanationWrapper,
 } from './Feed.style';
 
@@ -32,11 +31,13 @@ function Feed() {
                         <div>
                             <ProfileImageWrapper>
                                 <Link href="#jangdonggun">
-                                    <Profile
-                                        src="/images/profile.jpg"
-                                        width={32}
-                                        height={32}
-                                    />
+                                    <a>
+                                        <Profile
+                                            src="/images/profile.jpg"
+                                            width={32}
+                                            height={32}
+                                        />
+                                    </a>
                                 </Link>
                             </ProfileImageWrapper>
                             <ProfileNameWrapper>
@@ -59,11 +60,7 @@ function Feed() {
                     </TitleWrap>
                 </TitleWrapper>
                 <ContentWrapper>
-                    <Image
-                        src="/images/content/content1.jpg"
-                        className="content"
-                        layout="fill"
-                    />
+                    <Image src="/images/content/content1.jpg" layout="fill" />
                 </ContentWrapper>
                 <SubContentWrapper>
                     <FunctionWrapper>
@@ -116,15 +113,13 @@ function Feed() {
                             <ProfileNameWrapper>
                                 <ProfileNameWrap colors={theme.colors}>
                                     <Link href="#jangdonggun">
-                                    envolved_Developer
+                                        envolved_Developer
                                     </Link>
                                 </ProfileNameWrap>
                             </ProfileNameWrapper>
                             벚꽃구경하러 왔습니다~
                         </div>
-                        <div className="hash">
-                            #벚꽃 #한강
-                        </div>
+                        <div className="hash">#벚꽃 #한강</div>
                     </ExplanationWrapper>
                 </SubContentWrapper>
             </Wrap>
