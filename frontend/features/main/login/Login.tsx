@@ -1,8 +1,8 @@
-import React, { useCallback, useState, useMemo } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import { useTheme } from 'styled-components';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { LoginApi } from '@/features/user/user.slice';
-import { changeInput } from './login.slice';
+import { reset, changeInput } from './login.slice';
 import { ILoginProps } from './login.interface';
 import { useTranslation } from 'react-i18next';
 import {
@@ -81,6 +81,12 @@ function Login({ onClickRegister }: ILoginProps) {
   const isPossibleLogin = useMemo(() => {
     return id.length > 0 && pw.length >= 6;
   }, [id, pw]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(reset());
+    };
+  }, [reset]);
 
   return (
     <LoginWrapper>
