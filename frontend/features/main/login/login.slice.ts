@@ -10,9 +10,7 @@ export const loginSlice = createSlice({
     name: 'login',
     initialState,
     reducers: {
-        reset : (state) => {
-            state = initialState;
-        },
+        reset : () => initialState,
         changeInput: (state, action: PayloadAction<IChangeInputPayload>) => {
             state[action.payload.key] = action.payload.value;
         },

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { useTheme } from 'styled-components';
-import { changeInput } from './register.slice';
+import { reset, changeInput } from './register.slice';
 import { IRegisterProps } from './register.interface';
 import { RegisterApi } from '@/features/user/user.slice';
 import {
@@ -93,6 +93,12 @@ function Register({ onClickLogIn }: IRegisterProps) {
   const isPossibleRegister = useMemo(() => {
     return !isEmptyId && !isEmptyName && !isEmptyNickName && pw.length >= 6;
   }, [isEmptyId, isEmptyName, isEmptyNickName, pw]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(reset());
+    };
+  }, []);
 
   return (
     <RegisterWrapper>
