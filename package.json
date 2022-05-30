@@ -9,13 +9,12 @@
     "front": "cd frontend && npm run dev",
     "back": "cd backend && npm run dev",
     "dev": "concurrently \"npm run back\" \"npm run front\"",
-
-    "install" : "npm install . ./frontend ./backend",
-    "build:front" : "cd frontend && npm run build",
-    "build:back" : "cd backend && npm run build",
-    "build" : "npm run build:front && npm run build:back",
-    "start:front" : "cd frontend && npm run start",
-    "start:back" : "cd backend && npm run dev"
+    "install": "npm install . ./frontend ./backend",
+    "build:front": "cd frontend && npm run build",
+    "build:back": "cd backend && npm run build",
+    "build": "npm run build:front && npm run build:back",
+    "start:front": "cd frontend && npm run start",
+    "start:back": "cd backend && npm run dev"
   },
   "repository": {
     "type": "git",
@@ -40,5 +39,9 @@
     "*.{json,md}": [
       "npm run prettier:fix"
     ]
+  },
+  "dependencies": {
+    "backend": "file:backend",
+    "frontend": "file:frontend"
   }
 }

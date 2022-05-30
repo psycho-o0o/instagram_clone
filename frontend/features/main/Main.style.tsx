@@ -38,6 +38,8 @@ export const LogoWrapper = styled.div`
 `;
 export const LogoWrap = styled.div`
     cursor: pointer;
+    width : 175px;
+    height : 51px;
     justify-content: center;
     align-items: center;
 `;
