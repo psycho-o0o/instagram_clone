@@ -86,7 +86,7 @@ function Login({ onClickRegister }: ILoginProps) {
     return () => {
       dispatch(reset());
     };
-  }, []);
+  }, [reset]);
 
   return (
     <LoginWrapper>

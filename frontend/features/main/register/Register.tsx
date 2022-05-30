@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useMemo } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { useTheme } from 'styled-components';
@@ -93,12 +93,6 @@ function Register({ onClickLogIn }: IRegisterProps) {
   const isPossibleRegister = useMemo(() => {
     return !isEmptyId && !isEmptyName && !isEmptyNickName && pw.length >= 6;
   }, [isEmptyId, isEmptyName, isEmptyNickName, pw]);
-
-  useEffect(() => {
-    return () => {
-      dispatch(reset());
-    };
-  }, []);
 
   return (
     <RegisterWrapper>
