@@ -18,18 +18,32 @@ export const StyledNav = styled.nav`
     margin: 16px 16px 6px;
 `;
 export const StyledArticle = styled.article`
-    flex-grow: 1;
     margin: 0 auto;
     padding-bottom: 32px;
     width: 100%;
     max-width: 935px;
+    display : flex;
+    flex: 1 0 0;
+
+    @media screen and (min-width: 768px) {
+        flex-direction: column;
+        justify-content : center;
+        align-items: center;
+    }
 `;
-export const MainWrapper = styled.div<IMainWrapperProps>`
+export const MainWrapper = styled.div<IMainWrapperProps & DefaultTheme>`
     padding-top: ${(props) => (props.hideTopPadding ? '0px' : '100px')};
     padding-bottom: 60px;
     max-width: 100%;
+    min-width: 350px;
     justify-content: flex-start;
     align-items: center;
+
+    @media screen and (min-width: 768px){
+        padding-top: 0px;
+        padding-bottom: 20px;
+        border: 1px solid ${props=>props.colors.gray4};
+    }
 `;
 export const LogoWrapper = styled.div`
     margin-top: 36px;
