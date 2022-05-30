@@ -1,4 +1,4 @@
-import '../styles/globals.css';
+import '../styles/global.css';
 import wrapper from 'redux/store';
 import { ThemeProvider } from 'styled-components';
 import type { AppProps } from 'next/app';
