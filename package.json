@@ -6,9 +6,9 @@
   "scripts": {
     "front-prettier:fix": "cd frontend && npm run prettier:fix",
     "front-eslint:fix": "cd frontend && npm run eslint:fix",
-    "front": "cd frontend && npm run dev",
-    "back": "cd backend && npm run dev",
-    "dev": "concurrently \"npm run back\" \"npm run front\"",
+    "dev:front": "cd frontend && npm run dev",
+    "dev:back": "cd backend && npm run dev",
+    "dev": "concurrently \"npm run dev:front\" \"npm run dev:back\"",
     "install": "npm install . ./frontend ./backend",
     "build:front": "cd frontend && npm run build",
     "build:back": "cd backend && npm run build",

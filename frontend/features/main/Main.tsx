@@ -88,7 +88,10 @@ function Main({ userAgent }: IProps) {
         </LanguageWrapper>
       </StyledNav>
       <StyledArticle>
-        <MainWrapper hideTopPadding={isClickedLogin || isClickedRegister}>
+        <MainWrapper
+          colors={theme.colors}
+          hideTopPadding={isClickedLogin || isClickedRegister}
+        >
           <LogoWrapper>
             <LogoWrap>
               <Image
