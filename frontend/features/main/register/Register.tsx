@@ -94,6 +94,12 @@ function Register({ onClickLogIn }: IRegisterProps) {
     return !isEmptyId && !isEmptyName && !isEmptyNickName && pw.length >= 6;
   }, [isEmptyId, isEmptyName, isEmptyNickName, pw]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(reset());
+    };
+  }, []);
+
   return (
     <RegisterWrapper>
       <form onSubmit={onSubmit}>
