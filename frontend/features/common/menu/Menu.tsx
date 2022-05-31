@@ -3,19 +3,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useTheme } from 'styled-components';
-import { LogoutApi } from '@/features/user/user.slice';
-import { useAppDispatch } from '@/redux/hooks';
 import { FooterWrapper, FooterWrap, MenuWrapper, LogoutButton } from './Menu.style';
 
 function Menu() {
   const theme = useTheme();
   const router = useRouter();
-  const dispatch = useAppDispatch();
   const baseIconsUrl = '/images/icon';
 
   const onLogoutClick = useCallback(() => {
-    dispatch(LogoutApi());
-  }, []);
+    //dispatch(LogoutApi());
+    localStorage.setItem('jwt', '');
+    router.push('/');
+  }, [localStorage, router]);
 
   return (
     <FooterWrapper colors={theme.colors}>

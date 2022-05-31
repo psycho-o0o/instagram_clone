@@ -3,7 +3,6 @@ import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import {
   IUserState,
   ILoginApiProps,
-  ILogoutApiProps,
   IRegisterApiProps,
   ICheckApiProps,
   IUserThunkFulfilledProps,
