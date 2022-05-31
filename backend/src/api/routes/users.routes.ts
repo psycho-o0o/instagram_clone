@@ -85,7 +85,7 @@ router.post(
 			return;
 		}
 
-		let idType: 'email' | 'phone' | undefined = undefined;
+		let idType: 'email' | 'phone' | 'nickName' | undefined = undefined;
 		const emailRegExp = /[^@]+@.+/;
 		const phoneRegExp = /01[0-9]{9}/;
 		const userInfo: ISaveUserInfoProps = {
@@ -99,24 +99,16 @@ router.post(
 		} else if (phoneRegExp.test(id)) {
 			idType = 'phone';
 		} else {
-			res.status(401).send({ message: 'incorrect id' });
-			return;
+			idType = 'nickName';
 		}
 
 		const userModel = mongoose.model('User', UserSchema);
 		try {
 			const isPresentAccount =
 				(await userModel.exists({ [idType]: id })) !== null;
-			const isPresentNickName =
-				(await userModel.exists({ nickName })) !== null;
 			if (isPresentAccount) {
 				res.status(401).send({
 					message: 'present account'
-				});
-				return;
-			} else if (isPresentNickName) {
-				res.status(401).send({
-					message: 'present nickName'
 				});
 				return;
 			} else {
