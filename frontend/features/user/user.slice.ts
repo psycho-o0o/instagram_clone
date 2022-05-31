@@ -3,7 +3,6 @@ import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import {
   IUserState,
   ILoginApiProps,
-  ILogoutApiProps,
   IRegisterApiProps,
   ICheckApiProps,
   IUserThunkFulfilledProps,
@@ -26,7 +25,7 @@ export const LogoutApi = createAsyncThunk(
   'user/logoutApi',
   async (_, { rejectWithValue }) => {
     try {
-      const data = localStorage.getItem('jwt');
+      const data = {'jwt' : localStorage.getItem('jwt')};
       const response = await axiosInstance.post('/api/users/logout', data);
       return response?.data;
     } catch (err: any) {
