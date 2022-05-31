@@ -1,7 +1,7 @@
 import styled, { DefaultTheme } from 'styled-components';
 
 export const FooterWrapper = styled.footer<DefaultTheme>`
-    position: fixed;
+    position: absolute;
     left: 0;
     right: 0;
     bottom : 0;
