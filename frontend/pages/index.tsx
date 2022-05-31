@@ -32,7 +32,7 @@ function App({ userAgent }: PropsType) {
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
 
-    if (jwt !== null && jwt !== '') {
+    if (jwt !== null) {
       dispatch(CheckApi({ jwt }));
     }
 
