@@ -20,7 +20,6 @@
 <h1>
     명령어(최상위 폴더)
 </h1>
-<h2>
     npm install<br/>
     npm run build<br/>
     npm run start:front<br>
@@ -33,4 +32,3 @@
         <li> passPhrase for private and public key => 아무거나 가능 <br/>
             공개키, 비밀키를 위한 구문
         </li>
-</h2>
