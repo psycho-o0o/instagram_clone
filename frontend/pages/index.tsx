@@ -32,12 +32,13 @@ function App({ userAgent }: PropsType) {
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
 
+    if (jwt !== null) {
+      dispatch(CheckApi({ jwt }));
+    }
+
     if (isLogin) {
       router.push('/home');
       return;
-    }
-    if (jwt !== null) {
-      dispatch(CheckApi({ jwt }));
     }
   }, [isLogin]);
 

@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useTheme } from 'styled-components';
-import { FooterWrapper, FooterWrap, MenuWrapper } from './Menu.style';
+import { FooterWrapper, FooterWrap, MenuWrapper, LogoutButton } from './Menu.style';
 
 function Menu() {
   const theme = useTheme();
   const router = useRouter();
   const baseIconsUrl = '/images/icon';
+
+  const onLogoutClick = useCallback(() => {
+    //dispatch(LogoutApi());
+    localStorage.setItem('jwt', '');
+    router.push('/');
+  }, [localStorage, router]);
 
   return (
     <FooterWrapper colors={theme.colors}>
@@ -66,11 +72,9 @@ function Menu() {
           </Link>
         </MenuWrapper>
         <MenuWrapper>
-          <Link href="profile">
-            <a>
-              <Image src="/images/icon/logout.svg" width={24} height={24} />
-            </a>
-          </Link>
+          <LogoutButton onClick={onLogoutClick}>
+            <Image src="/images/icon/logout.svg" width={24} height={24} />
+          </LogoutButton>
         </MenuWrapper>
       </FooterWrap>
     </FooterWrapper>
