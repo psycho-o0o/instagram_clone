@@ -1,7 +1,7 @@
 import styled, { DefaultTheme } from 'styled-components';
 
 export const FooterWrapper = styled.footer<DefaultTheme>`
-    position: fixed;
+    position: absolute;
     left: 0;
     right: 0;
     bottom : 0;
@@ -24,4 +24,11 @@ export const MenuWrapper = styled.div`
     height: 100%;
     justify-content : center;
     align-items : center;
+    cursor : pointer;
+`
+
+export const LogoutButton = styled.button`
+    border : none;
+    outline : none;
+    background : 0 0;
 `

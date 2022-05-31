@@ -11,16 +11,13 @@
 <h1>
     프로젝트 시작 전 유의사항
 </h1>
-<h2>
-    NPM과 MongoDB가 먼저 깔려있어야만 합니다.
-</h2>
-<br/>
-<br/>
+1. NPM과 MongoDB가 먼저 깔려있어야만 합니다.<br/>
+2. 크롬에서 F12로 모바일로 봐주셨으면 합니다.
+
 
 <h1>
     명령어(최상위 폴더)
 </h1>
-<h2>
     npm install<br/>
     npm run build<br/>
     npm run start:front<br>
@@ -33,4 +30,3 @@
         <li> passPhrase for private and public key => 아무거나 가능 <br/>
             공개키, 비밀키를 위한 구문
         </li>
-</h2>
