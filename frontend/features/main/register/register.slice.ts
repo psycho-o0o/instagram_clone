@@ -16,6 +16,7 @@ export const registerSlice = createSlice({
     name: 'register',
     initialState,
     reducers: {
+        reset : () => initialState,
         changeInput: (state, action: PayloadAction<IChangeInputPayload>) => {
             state[action.payload.key] = action.payload.value;
         },
@@ -23,6 +24,6 @@ export const registerSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { changeInput } = registerSlice.actions;
+export const { reset, changeInput } = registerSlice.actions;
 
 export default registerSlice.reducer;
