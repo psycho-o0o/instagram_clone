@@ -4,19 +4,19 @@ export interface ILoginProps {
 }
 
 // Login.style.ts
-interface ILoginInputLabel {
+export interface ILoginInputLabel {
     isEmptyInput: boolean;
 }
 
-interface IToggleWrap {
+export interface IToggleWrap {
     isEmpty?: boolean;
 }
 
-interface ILoginButton {
+export interface ILoginButton {
     isPossibleLogin: boolean;
 }
 
-interface IErrorWrapperProps {
+export interface IErrorWrapperProps {
     hide : boolean;
 }
 

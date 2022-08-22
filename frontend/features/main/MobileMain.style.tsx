@@ -107,6 +107,7 @@ export const SuggestionWrapper = styled.div<ISuggestionWrapperProps & DefaultThe
             font-weight: 600;
             color: ${(props) => props.colors.blue1};
             display: inline-block;
+            cursor: pointer;
         }
     }
 `;
