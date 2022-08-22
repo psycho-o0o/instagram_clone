@@ -5,8 +5,10 @@ import { SSRConfig } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
 import nextI18NextConfig from '../next-i18next.config';
+import parser from 'ua-parser-js';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import Main from '@/features/main/Main';
+import MobileMain from '@/features/main/MobileMain';
+import DesktopMain from '@/features/main/DesktopMain';
 import { CheckApi } from '@/features/user/user.slice';
 import Footer from '@/features/common/footer/Footer';
 
@@ -24,6 +26,7 @@ type PropsType = IUserAgent & SSRConfig;
 
 function App({ userAgent }: PropsType) {
   const router = useRouter();
+  const ua = parser(userAgent);
   const dispatch = useAppDispatch();
   const { isLogin } = useAppSelector((state) => ({
     isLogin: state.user.isLogin,
@@ -45,7 +48,7 @@ function App({ userAgent }: PropsType) {
   if (isLogin) return <div />;
   return (
     <StyledSection>
-      <Main userAgent={userAgent} />
+      {ua.device.type === 'mobile' ? <MobileMain os={ua.os.name} /> : <DesktopMain />}
       <Footer />
     </StyledSection>
   );

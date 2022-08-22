@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { i18n, useTranslation } from 'next-i18next';
 import Image from 'next/image';
-import parser from 'ua-parser-js';
 import Login from './login/Login';
 import Register from './register/Register';
 import { useTheme } from 'styled-components';
@@ -20,15 +19,14 @@ import {
   LogoWrapper,
   SuggestionWrapper,
   DownLoadAppButton,
-} from './Main.style';
+} from './MobileMain.style';
 
 interface IProps {
-  userAgent: string | undefined;
+  os: string | undefined;
 }
 
-function Main({ userAgent }: IProps) {
+function MobileMain({ os }: IProps) {
   const theme = useTheme();
-  const ua = parser(userAgent);
   const { t } = useTranslation('main');
   const [isClickedLogin, setIsClickedLogin] = useState(false);
   const [isClickedRegister, setIsClickedRegister] = useState(false);
@@ -48,7 +46,7 @@ function Main({ userAgent }: IProps) {
       return;
     }
 
-    if (ua.os.name === 'iOS') {
+    if (os === 'iOS') {
       window.open(AppStoreUrl, '__blank');
     } else {
       window.open(googlePlayUrl, '__blank');
@@ -135,4 +133,4 @@ function Main({ userAgent }: IProps) {
   );
 }
 
-export default Main;
+export default MobileMain;
