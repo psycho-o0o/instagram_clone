@@ -141,14 +141,13 @@ router.post(
 router.post(
 	'/check',
 	async (req: Request, res: Response, next: NextFunction) => {
-		const {jwt} = req.body;
-		try{
+		const { jwt } = req.body;
+		try {
 			await validateToken(jwt);
 			res.status(201).send();
-		} catch(e) {
+		} catch (e) {
 			res.status(401).send();
 		}
-
 	}
 );
 

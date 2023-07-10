@@ -1,36 +1,35 @@
 // Register.tsx
 export interface IRegisterProps {
-    onClickLogIn : () => void
+  onClickLogIn: () => void;
 }
 
 // Register.style.tsx
 export interface IRegisterInputLabel {
-    isEmptyInput: boolean;
+  isEmptyInput: boolean;
 }
 
 export interface IToggleWrap {
-    isEmpty?: boolean;
+  isEmpty?: boolean;
 }
 
 export interface IRegisterButton {
-    isPossibleRegister: boolean;
+  isPossibleRegister: boolean;
 }
 
 export interface IErrorWrapperProps {
-    hide : boolean;
+  hide: boolean;
 }
 
 // register.slice.ts
 export interface IRegisterState {
-    id: string;
-    name : string;
-    nickName : string;
-    pw: string;
-    error: null | string;
+  id: string;
+  name: string;
+  nickName: string;
+  pw: string;
+  error: null | string;
 }
 
 export interface IChangeInputPayload {
-    key : 'id'|'name'|'nickName'|'pw';
-    value: string;
+  key: 'id' | 'name' | 'nickName' | 'pw';
+  value: string;
 }
-

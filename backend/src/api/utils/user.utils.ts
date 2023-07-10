@@ -1,7 +1,10 @@
 import bcrypt from 'bcrypt';
 
 const makeHashPassword = (password: string) => {
-	const hashedPassword = bcrypt.hashSync(password, process.env.SALT as string);
+	const hashedPassword = bcrypt.hashSync(
+		password,
+		process.env.SALT as string
+	);
 
 	return hashedPassword;
 };

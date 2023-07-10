@@ -1,33 +1,32 @@
 // Login.ts
 export interface ILoginProps {
-    onClickRegister: () => void;
+  onClickRegister: () => void;
 }
 
 // Login.style.ts
 export interface ILoginInputLabel {
-    isEmptyInput: boolean;
+  isEmptyInput: boolean;
 }
 
 export interface IToggleWrap {
-    isEmpty?: boolean;
+  isEmpty?: boolean;
 }
 
 export interface ILoginButton {
-    isPossibleLogin: boolean;
+  isPossibleLogin: boolean;
 }
 
 export interface IErrorWrapperProps {
-    hide : boolean;
+  hide: boolean;
 }
 
 // login.slice.ts
 export interface ILoginState {
-    id: string;
-    pw: string;
+  id: string;
+  pw: string;
 }
 
 export interface IChangeInputPayload {
-    key: 'id' | 'pw';
-    value: string;
+  key: 'id' | 'pw';
+  value: string;
 }
-

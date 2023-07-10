@@ -20,7 +20,7 @@ const UserSchema = new Schema<IUserSchemaProps>({
 	},
 	name: { type: String, required: true },
 	nickName: { type: String, required: true, unique: true },
-	password: { type: String, required: true, unique : false }
+	password: { type: String, required: true, unique: false }
 });
 
 UserSchema.pre('save', function (next) {

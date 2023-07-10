@@ -3,15 +3,15 @@ import { useTheme } from 'styled-components';
 import { Wrapper, Wrap } from './DesktopMain.style';
 
 function DesktopMain() {
-    const theme = useTheme();
-    return (
-        <Wrapper colors={theme.colors}>
-            <Wrap>
-                {/* <ImageSlider />
+  const theme = useTheme();
+  return (
+    <Wrapper colors={theme.colors}>
+      <Wrap>
+        {/* <ImageSlider />
                 <Authentication /> */}
-            </Wrap>
-        </Wrapper>
-    )
+      </Wrap>
+    </Wrapper>
+  );
 }
 
 export default DesktopMain;

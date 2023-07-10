@@ -1,17 +1,17 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 interface IMongodbConnectArgs {
-  uri: string;
-  connectOptions?: mongoose.ConnectOptions;
+	uri: string;
+	connectOptions?: mongoose.ConnectOptions;
 }
 
 export interface IMongodbConnect {
-  (
-    uri: string,
-    connectOptions?: mongoose.ConnectOptions
-  ): Promise<mongoose.Connection>;
+	(
+		uri: string,
+		connectOptions?: mongoose.ConnectOptions
+	): Promise<mongoose.Connection>;
 }
 
 export interface IConnectToMongo {
-  (mongodbConnectArgs: IMongodbConnectArgs): Promise<mongoose.Connection>;
+	(mongodbConnectArgs: IMongodbConnectArgs): Promise<mongoose.Connection>;
 }

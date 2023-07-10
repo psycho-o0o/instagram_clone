@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import { SSRConfig } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
-import nextI18NextConfig from '../next-i18next.config';
 import parser from 'ua-parser-js';
+import nextI18NextConfig from '../next-i18next.config';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import MobileMain from '@/features/main/MobileMain';
 import DesktopMain from '@/features/main/DesktopMain';
@@ -41,14 +41,17 @@ function App({ userAgent }: PropsType) {
 
     if (isLogin) {
       router.push('/home');
-      return;
     }
   }, [isLogin]);
 
   if (isLogin) return <div />;
   return (
     <StyledSection>
-      {ua.device.type === 'mobile' ? <MobileMain os={ua.os.name} /> : <DesktopMain />}
+      {ua.device.type === 'mobile' ? (
+        <MobileMain os={ua.os.name} />
+      ) : (
+        <DesktopMain />
+      )}
       <Footer />
     </StyledSection>
   );

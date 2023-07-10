@@ -35,22 +35,22 @@
 }
 
 @font-face {
-    font-family: 'Noto Sans KR';
-    font-weight: 400;
-    src: '/fonts/Roboto-Regular.ttf';
-  }
-  
-  @font-face {
-    font-family: 'Noto Sans KR';
-    font-weight: 500;
-    src: '/fonts/Roboto-Medium.ttf';
-  }
-  
-  @font-face {
-    font-family: 'Noto Sans KR';
-    font-weight: 700;
-    src: '/fonts/Roboto-Bold.ttf';
-  }
+  font-family: 'Noto Sans KR';
+  font-weight: 400;
+  src: '/fonts/Roboto-Regular.ttf';
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 500;
+  src: '/fonts/Roboto-Medium.ttf';
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 700;
+  src: '/fonts/Roboto-Bold.ttf';
+}
 
 * {
   margin: 0;
