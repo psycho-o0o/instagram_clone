@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from 'express';
-import { connectToMongo } from './api/db/connect';
+import mongoose from 'mongoose';
 import userRouter from './api/routes/users.routes';
 import dotenv from 'dotenv';
 
@@ -8,16 +8,13 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT;
 
-const mongodbConnectArgs = {
-	uri: process.env.DB_ADDR as string,
-	connectOptions: { dbName: 'instagram' }
-};
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/users', userRouter);
 
-connectToMongo(mongodbConnectArgs)
+mongoose
+	.set('strictQuery', false)
+	.connect(process.env.DB_ADDR as string, { dbName: 'instagram' })
 	.then(() => {
 		app.listen(port, () => {
 			console.log(

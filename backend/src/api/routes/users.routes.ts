@@ -1,9 +1,8 @@
 import express, { NextFunction, Router, Request, Response } from 'express';
 import mongoose from 'mongoose';
-import UserSchema, { IUserSchemaProps } from '../db/model/user';
+import UserSchema from '../db/model/user';
 import { makeHashPassword, comparePassword } from '../../api/utils/user.utils';
 import { generateToken, validateToken } from '../../api/utils/jwt.utils';
-import e from 'express';
 
 interface IRequestUserInfoProps {
 	phone?: string;
@@ -21,47 +20,38 @@ interface ISaveUserInfoProps {
 
 const router: Router = express.Router();
 
-router.post('/login', (req: Request, res: Response, next: NextFunction) => {
-	const { id, pw } = req.body;
-	if (id === undefined || pw === undefined) {
-		res.status(401).send({ message: 'not entered input' }); // Unauthorized
-		return;
-	}
-
-	const emailRegExp = /[^@]+@.+/;
-	const phoneRegExp = /01[0-9]{9}/;
-	const requestUserInfo: IRequestUserInfoProps = {};
-
-	if (emailRegExp.test(id)) {
-		requestUserInfo.email = id;
-	} else if (phoneRegExp.test(id)) {
-		requestUserInfo.phone = id;
-	} else {
-		requestUserInfo.nickName = id;
-	}
-
-	const userModel = mongoose.model('User', UserSchema);
-	userModel.findOne(requestUserInfo, (err: any, userInfo: any) => {
-		if (err !== null) {
-			console.log(`err : ${err}`);
-			res.status(401).send({
-				message: 'unknown error'
-			}); // unauthorized
+router.post(
+	'/login',
+	async (req: Request, res: Response, next: NextFunction) => {
+		const { id, pw } = req.body;
+		if (id === undefined || pw === undefined) {
+			res.status(401).send({ message: 'not entered input' }); // Unauthorized
 			return;
 		}
 
-		if (userInfo === null || userInfo === undefined) {
+		const emailRegExp = /[^@]+@.+/;
+		const phoneRegExp = /01[0-9]{9}/;
+		const requestUserInfo: IRequestUserInfoProps = {};
+
+		if (emailRegExp.test(id)) {
+			requestUserInfo.email = id;
+		} else if (phoneRegExp.test(id)) {
+			requestUserInfo.phone = id;
+		} else {
+			requestUserInfo.nickName = id;
+		}
+
+		const userModel = mongoose.model('User', UserSchema);
+		const userInfo = await userModel.findOne(requestUserInfo).exec();
+
+		if (userInfo === null) {
 			res.status(401).send({
 				message: 'non-existent id'
 			});
 			return;
 		}
 
-		const payload = { ...userInfo._doc };
-		const { password } = payload;
-
-		delete payload.password;
-
+		const password = userInfo.password;
 		if (!comparePassword(pw, password)) {
 			res.status(401).send({
 				message: 'incorrect password'
@@ -69,12 +59,19 @@ router.post('/login', (req: Request, res: Response, next: NextFunction) => {
 			return;
 		}
 
-		const jwt = generateToken(payload);
+		const jwt = generateToken({
+			id: userInfo.id,
+			phone: userInfo.phone,
+			email: userInfo.email,
+			nickName: userInfo.nickName
+		});
 		res.status(200).send({
 			jwt
 		});
-	});
-});
+
+		next();
+	}
+);
 
 router.post(
 	'/register',
@@ -120,9 +117,13 @@ router.post(
 				});
 				return;
 			} else {
-				const doc = new userModel({ [idType]: id, ...userInfo });
-				const payload = (await doc.save()).toObject();
-				delete payload.password;
+				await new userModel({ [idType]: id, ...userInfo }).save();
+
+				const payload = {
+					[idType]: id,
+					name: userInfo.name,
+					nickName: userInfo.nickName
+				};
 
 				const jwt = generateToken(payload);
 				res.status(200).send({

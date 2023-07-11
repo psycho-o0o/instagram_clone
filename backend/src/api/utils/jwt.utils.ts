@@ -8,11 +8,16 @@ import {
 } from 'jsonwebtoken';
 import * as fs from 'fs';
 import * as path from 'path';
-import { IUserSchemaProps } from '../db/model/user';
 
-type payloadType = Omit<IUserSchemaProps, 'password'>;
+interface IPayload {
+	id?: string;
+	name?: string;
+	phone?: string;
+	email?: string;
+	nickName: string;
+}
 
-export function generateToken(payload: payloadType) {
+export function generateToken(payload: IPayload) {
 	const privateKey = fs.readFileSync(
 		path.join(__dirname, './../../../private.key')
 	);

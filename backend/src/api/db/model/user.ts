@@ -5,10 +5,9 @@ export interface IUserSchemaProps {
 	email?: string;
 	name: string;
 	nickName: string;
-	password?: string;
+	password: string;
 }
 
-// 참고 : https://github.com/Zwimber/mongoose-style-guide
 const UserSchema = new Schema<IUserSchemaProps>({
 	phone: {
 		type: String,
