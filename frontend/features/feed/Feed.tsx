@@ -38,7 +38,7 @@ function Feed() {
               </ProfileImageWrapper>
               <ProfileNameWrapper>
                 <ProfileNameWrap colors={theme.colors}>
-                  <Link href="#jangdonggun">envolved_Developer</Link>
+                  <Link href="#jangdonggun">Psycho-o0o</Link>
                 </ProfileNameWrap>
               </ProfileNameWrapper>
             </div>
@@ -92,16 +92,16 @@ function Feed() {
             </div>
           </FunctionWrapper>
           <GoodCountWrapper colors={theme.colors}>
-            <span>좋아요 10000000개</span>
+            <span>좋아요 o0o개</span>
           </GoodCountWrapper>
           <ExplanationWrapper>
             <div className="text">
               <ProfileNameWrapper>
                 <ProfileNameWrap colors={theme.colors}>
-                  <Link href="#jangdonggun">envolved_Developer</Link>
+                  <Link href="#jangdonggun">Psycho-o0o</Link>
                 </ProfileNameWrap>
               </ProfileNameWrapper>
-              벚꽃구경하러 왔습니다~
+              벚꽃구경중
             </div>
             <div className="hash">#벚꽃 #한강</div>
           </ExplanationWrapper>
