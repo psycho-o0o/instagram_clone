@@ -15,7 +15,8 @@ import {
   StoryWrap,
   StoryWrapper,
 } from './Home.style';
-import Feed from '../common/feed/Feed';
+import Story from '../story/Story';
+import Feed from '../feed/Feed';
 import Menu from '../common/menu/Menu';
 
 function Home() {
@@ -55,7 +56,9 @@ function Home() {
       </HeaderWrapper>
       <main>
         <StoryWrapper colors={theme.colors}>
-          <StoryWrap></StoryWrap>
+          <StoryWrap>
+            <Story isHiddenPlus={false} />
+          </StoryWrap>
         </StoryWrapper>
         <FeedWrapper>
           <Feed />
