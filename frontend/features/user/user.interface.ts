@@ -5,7 +5,7 @@ export interface IUserProps {
 
 // User.slice.ts
 export interface IUserState {
-  isLogin: boolean;
+  isOnLogin: boolean;
   loading: boolean;
   error: null | string;
 }

@@ -5,14 +5,14 @@ import Home from '@/features/home/Home';
 
 export default function HomePage() {
   const router = useRouter();
-  const { isLogin } = useAppSelector((state) => ({
-    isLogin: state.user.isLogin,
+  const { isOnLogin } = useAppSelector((state) => ({
+    isOnLogin: state.user.isOnLogin,
   }));
 
   useEffect(() => {
-    if (!isLogin) router.push('/');
-  }, [isLogin]);
+    if (!isOnLogin) router.push('/');
+  }, [isOnLogin]);
 
-  if (isLogin) return <Home />;
+  if (isOnLogin) return <Home />;
   return <div />;
 }

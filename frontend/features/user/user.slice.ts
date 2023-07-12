@@ -59,7 +59,7 @@ export const CheckApi = createAsyncThunk(
 );
 
 const initialState: IUserState = {
-  isLogin: false,
+  isOnLogin: false,
   loading: true,
   error: null,
 };
@@ -77,7 +77,7 @@ export const UserSlice = createSlice({
       state,
       { payload: { jwt } }: PayloadAction<IUserThunkFulfilledProps>
     ) => {
-      state.isLogin = true;
+      state.isOnLogin = true;
       state.loading = false;
       localStorage.setItem('jwt', jwt);
     },
@@ -87,7 +87,7 @@ export const UserSlice = createSlice({
     ) => {
       state.error = message;
       state.loading = false;
-      state.isLogin = false;
+      state.isOnLogin = false;
     },
     [RegisterApi.pending.type]: (state) => {
       state.error = null;
@@ -97,7 +97,7 @@ export const UserSlice = createSlice({
       state,
       { payload: { jwt } }: PayloadAction<IUserThunkFulfilledProps>
     ) => {
-      state.isLogin = true;
+      state.isOnLogin = true;
       state.loading = false;
       localStorage.setItem('jwt', jwt);
     },
@@ -107,14 +107,14 @@ export const UserSlice = createSlice({
     ) => {
       state.error = message;
       state.loading = false;
-      state.isLogin = false;
+      state.isOnLogin = false;
     },
     [CheckApi.pending.type]: (state) => {
       state.error = null;
       state.loading = true;
     },
     [CheckApi.fulfilled.type]: (state) => {
-      state.isLogin = true;
+      state.isOnLogin = true;
       state.loading = false;
     },
     [CheckApi.rejected.type]: (
@@ -122,7 +122,7 @@ export const UserSlice = createSlice({
       { payload: { message } }: PayloadAction<IUserThunkRejectedProps>
     ) => {
       state.error = message;
-      state.isLogin = false;
+      state.isOnLogin = false;
       state.loading = false;
     },
   },
