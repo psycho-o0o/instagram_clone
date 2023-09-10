@@ -1,0 +1,12 @@
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/": "pages/index.js",
+  "/en-US/404": "pages/en-US/404.html",
+  "/ko-KR/404": "pages/ko-KR/404.html",
+  "/en-US/500": "pages/en-US/500.html",
+  "/ko-KR/500": "pages/ko-KR/500.html",
+  "/en-US/home": "pages/en-US/home.html",
+  "/ko-KR/home": "pages/ko-KR/home.html"
+}

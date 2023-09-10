@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "clone coding for instagram",
   "main": "index.js",
+  "proxy" : "http://localhost:4000",
   "scripts": {
     "front-prettier:fix": "cd frontend && npm run prettier:fix",
     "front-eslint:fix": "cd frontend && npm run eslint:fix",

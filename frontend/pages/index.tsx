@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import { SSRConfig } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -6,8 +6,6 @@ import styled from 'styled-components';
 import parser from 'ua-parser-js';
 import nextI18NextConfig from '../next-i18next.config';
 import MobileMain from '@/features/main/MobileMain';
-import DesktopMain from '@/features/main/DesktopMain';
-import { CheckApi } from '@/features/user/user.slice';
 import Footer from '@/features/common/footer/Footer';
 import { checkJWT } from '@/utils/checkJWT';
 
@@ -30,11 +28,7 @@ function App({ userAgent }: PropsType) {
   if (isOnLogin) return <div />;
   return (
     <StyledSection>
-      {ua.device.type === 'mobile' ? (
-        <MobileMain os={ua.os.name} />
-      ) : (
-        <DesktopMain />
-      )}
+      <MobileMain os={ua.os.name} />
       <Footer />
     </StyledSection>
   );
